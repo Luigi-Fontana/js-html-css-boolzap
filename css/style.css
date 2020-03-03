@@ -64,7 +64,8 @@ i, .avatar {
 }
 
 .header-left i,
-.header-right i {
+.header-right i,
+.send i {
     font-size: 20px;
     color: #999999;
     margin-right: 30px;
@@ -232,10 +233,85 @@ i, .avatar {
     height: calc(100% - 120px);
     background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2F66.media.tumblr.com%2F44451ddf448de2235f8370c138b00121%2Ftumblr_ouztgbH0CG1vj8v9mo3_1280.png&f=1&nofb=1');
     background-size: contain;
+    overflow-y: scroll;
+    padding-top: 30px;
+}
+
+.chat-text {
+    display: flex;
+    align-items: center;
+}
+
+.chat-text-end {
+    justify-content: flex-end;
+}
+
+.chat-text-start {
+    justify-content: flex-start;
+}
+
+.chat-sent,
+.chat-received {
+    max-width: 30%;
+    padding: 8px 10px 2px;
+    border-radius: 10px;
+    margin: 1px 80px;
+    box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.5);
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-sent {
+    background-color: white;
+}
+
+.chat-received {
+    background-color: #dcf8c6;
+}
+
+.chat-text p {
+    font-size: 15px;
+    color: #252525;
+    padding-right: 45px;
+}
+
+.chat-text small {
+    font-size: 11px;
+    color: #999999;
+    align-self: flex-end;
+    margin-top: -10px;
 }
 /* SEND */
 .send {
     height: 60px;
     background-color: #ededed;
     border-left: 1px solid #e0e0e0;
+    display: flex;
+    align-items: center;
+}
+
+.send-emoji,
+.send-vocal {
+    width: 8%;
+    display: flex;
+    justify-content: center;
+}
+
+.send-emoji i,
+.send-vocal i {
+    font-size: 25px;
+    margin-right: 0;
+}
+
+.send-input {
+    width: 84%;
+}
+
+.send-input input {
+    width: 100%;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-size: 14px;
+    color: #999999;
 }
