@@ -7,3 +7,67 @@
 body {
     background-color: pink;
 }
+
+#bg-green {
+    height: 15vh;
+    background-color: #009688;
+}
+
+#bg-grey {
+    height: 85vh;
+    background-color: #d5dbd8;
+}
+
+.container {
+    position: absolute;
+    top: 20px;
+    left: 100px;
+    right: 100px;
+    bottom: 20px;
+    display: flex;
+}
+
+.container-left {
+    width: 30%;
+    background-color: white;
+}
+
+.header-left,
+.header-right {
+    height: 60px;
+    background-color: #ededed;
+}
+
+.notification {
+    height: 100px;
+    background-color: #9de1fe;
+}
+
+.search-bar {
+    height: 50px;
+    background-color: #ededed;
+}
+
+.friends {
+    overflow-y: scroll;
+}
+
+.container-right {
+    width: 70%;
+}
+
+.header-right {
+    border-left: 1px solid #e0e0e0;
+}
+
+.chat {
+    height: calc(100% - 120px);
+    background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2F66.media.tumblr.com%2F44451ddf448de2235f8370c138b00121%2Ftumblr_ouztgbH0CG1vj8v9mo3_1280.png&f=1&nofb=1');
+    background-size: contain;
+}
+
+.send {
+    height: 60px;
+    background-color: #ededed;
+    border-left: 1px solid #e0e0e0;
+}
