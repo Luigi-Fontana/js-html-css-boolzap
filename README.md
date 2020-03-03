@@ -1,1 +1,1 @@
-# js-html-css-boolzap
+# 23° Esercizio Corso Boolean
