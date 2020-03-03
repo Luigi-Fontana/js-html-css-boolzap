@@ -1,3 +1,4 @@
+/* TAG GENERICI */
 * {
     margin: 0;
     padding: 0;
@@ -5,7 +6,13 @@
 }
 
 body {
-    background-color: pink;
+    font-family: 'Roboto', sans-serif;
+}
+
+.avatar {
+    width: 40px;
+    margin-left: 20px;
+    cursor: pointer;
 }
 
 #bg-green {
@@ -26,46 +33,103 @@ body {
     bottom: 20px;
     display: flex;
 }
-
+/* CONTAINER LEFT */
 .container-left {
     width: 30%;
     background-color: white;
 }
-
+/* HEADER LEFT */
 .header-left,
 .header-right {
     height: 60px;
     background-color: #ededed;
 }
 
+.header-left {
+    display: flex;
+    align-items: center;
+}
+
+.header-left-avatar {
+    width: 20%;
+}
+
+.header-left-icons {
+    width: 80%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.header-left i,
+.header-right i {
+    font-size: 20px;
+    color: #999999;
+    margin-right: 20px;
+    cursor: pointer;
+}
+/* NOTIFICATION */
 .notification {
     height: 100px;
     background-color: #9de1fe;
+    display: flex;
+    align-items: center;
 }
 
+.notification-icon {
+    width: 60px;
+    height: 60px;
+    background-color: white;
+    margin-left: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+
+.notification-icon i {
+    font-size: 25px;
+    color: #9de1fe;
+}
+.notification-text {
+    margin-left: 20px;
+}
+
+.notification-text h3 {
+    font-size: 15px;
+    font-weight: 400;
+    padding-bottom: 5px;
+}
+
+.notification-text p {
+    font-size: 13px;
+    color: #606060;
+    text-decoration: underline;
+    cursor: pointer;
+}
+/* SEARCH-BAR */
 .search-bar {
     height: 50px;
     background-color: #ededed;
 }
-
+/* FRIENDS */
 .friends {
     overflow-y: scroll;
 }
-
+/* CONTAINER RIGHT */
 .container-right {
     width: 70%;
 }
-
+/* HEADER RIGHT */
 .header-right {
     border-left: 1px solid #e0e0e0;
 }
-
+/* CHAT */
 .chat {
     height: calc(100% - 120px);
     background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2F66.media.tumblr.com%2F44451ddf448de2235f8370c138b00121%2Ftumblr_ouztgbH0CG1vj8v9mo3_1280.png&f=1&nofb=1');
     background-size: contain;
 }
-
+/* SEND */
 .send {
     height: 60px;
     background-color: #ededed;
