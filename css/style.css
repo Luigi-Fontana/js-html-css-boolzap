@@ -26,8 +26,8 @@ i, .avatar {
 .container {
     position: absolute;
     top: 20px;
-    left: 100px;
-    right: 100px;
+    left: 50px;
+    right: 50px;
     bottom: 20px;
     display: flex;
 }
@@ -67,7 +67,7 @@ i, .avatar {
 .header-right i {
     font-size: 20px;
     color: #999999;
-    margin-right: 20px;
+    margin-right: 30px;
     cursor: pointer;
 }
 /* NOTIFICATION */
@@ -196,6 +196,36 @@ i, .avatar {
 /* HEADER RIGHT */
 .header-right {
     border-left: 1px solid #e0e0e0;
+    display: flex;
+    align-items: center;
+}
+.header-right-avatar {
+    width: 10%;
+    display: flex;
+    justify-content: center;
+}
+
+.header-right-avatar img {
+    width: 40px;
+}
+
+.header-right-text {
+    width: 60%;
+}
+
+.header-right-text h3 {
+    font-size: 15px;
+}
+
+.header-right-text p {
+    font-size: 12px;
+    color: #999999;
+}
+
+.header-right-icons {
+    width: 30%;
+    display: flex;
+    justify-content: flex-end;
 }
 /* CHAT */
 .chat {
