@@ -15,7 +15,8 @@ i, .avatar {
 
 #bg-green {
     height: 15vh;
-    background-color: #009688;
+    background: rgb(34,193,195);
+    background: linear-gradient(90deg, rgba(34,193,195,1) 0%, rgba(255,205,96,1) 100%);
 }
 
 #bg-grey {
@@ -74,7 +75,7 @@ i, .avatar {
 /* NOTIFICATION */
 .notification {
     height: 100px;
-    background-color: #9de1fe;
+    background-color: #facd62;
     display: flex;
     align-items: center;
 }
@@ -92,7 +93,7 @@ i, .avatar {
 
 .notification-icon i {
     font-size: 25px;
-    color: #9de1fe;
+    color: #26c1c1;
 }
 .notification-text {
     margin-left: 20px;
@@ -152,7 +153,8 @@ i, .avatar {
     height: 80px;
     display: flex;
     align-items: center;
-    border-bottom: 1px solid #f7f7f7;
+    background-color: #D0FFFB;
+    border-bottom: 2px solid #ededed;
     cursor: pointer;
 }
 
