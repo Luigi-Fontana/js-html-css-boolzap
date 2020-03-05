@@ -2,7 +2,7 @@ $(document).ready(function(){
     $('#search').keyup(function(event){
         var charFilter = $(this).val().toLowerCase();
         $('.friend-chat').each(function(){
-            var highlightText = $(this).text().toLowerCase().includes(charFilter);
+            var highlightText = $(this).find('h3').text().toLowerCase().includes(charFilter);
             if (highlightText) {
                 $(this).show();
             } else {
