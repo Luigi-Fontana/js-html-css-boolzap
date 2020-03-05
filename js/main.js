@@ -1,4 +1,16 @@
 $(document).ready(function(){
+    $('#search').keyup(function(event){
+        var charFilter = $(this).val().toLowerCase();
+        $('.friend-chat').each(function(){
+            var highlightText = $(this).text().toLowerCase().includes(charFilter);
+            if (highlightText) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+        });
+    });
+
     var listaRisposte = [
         'È soltanto nelle misteriose equazioni dell’amore che si può trovare ogni ragione logica. Io sono qui grazie a te. Tu sei la ragione per cui io esisto. Tu sei tutte le mie ragioni.',
         '"Amore” significa non dover mai dire “mi dispiace”.',

@@ -13,6 +13,10 @@ i, .avatar {
     cursor: pointer;
 }
 
+.highlight {
+    text-decoration: underline;
+}
+
 #bg-green {
     height: 15vh;
     background: rgb(34,193,195);
@@ -136,7 +140,7 @@ i, .avatar {
     width: 95%;
 }
 
-.search-bar-input input {
+#search {
     width: 100%;
     color: #d4d4d4;
     padding: 10px 60px;
