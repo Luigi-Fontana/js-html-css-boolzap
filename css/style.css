@@ -158,6 +158,10 @@ i, .avatar {
     cursor: pointer;
 }
 
+.friend-chat.active {
+    background-color: #26c1c1;
+}
+
 .friend-chat-avatar {
     width: 25%;
     display: flex;
@@ -263,11 +267,11 @@ i, .avatar {
     flex-direction: column;
 }
 
-.chat-sent {
+.chat-received {
     background-color: white;
 }
 
-.chat-received {
+.chat-sent {
     background-color: #dcf8c6;
 }
 
@@ -305,15 +309,27 @@ i, .avatar {
     margin-right: 0;
 }
 
+.send-vocal i {
+    display: none;
+}
+
+.send-vocal i.active {
+    display: block;
+}
+
 .send-input {
     width: 84%;
 }
 
-.send-input input {
+#send {
     width: 100%;
     border: none;
     border-radius: 20px;
     padding: 10px 20px;
     font-size: 14px;
     color: #999999;
+}
+
+.template {
+    display: none;
 }

@@ -39,11 +39,11 @@
                         <i class="fas fa-search"></i>
                     </div>
                     <div class="search-bar-input">
-                        <input type="text" name="search" value="Cerca o inizia una nuova chat">
+                        <input type="text" name="search" placeholder="Cerca o inizia una nuova chat">
                     </div>
                 </div>
                 <div class="friends">
-                    <div class="friend-chat">
+                    <div class="friend-chat active">
                         <div class="friend-chat-avatar">
                             <img class="avatar" src="img/avatar2.png" alt="avatar">
                         </div>
@@ -180,7 +180,7 @@
                         <i class="fas fa-ellipsis-v"></i>
                     </div>
                 </div>
-                <div class="chat">
+                <div id="scrolled" class="chat">
                     <div class="chat-text chat-text-end">
                         <div class="chat-sent">
                             <p>Ciao Marcellino</p>
@@ -265,13 +265,32 @@
                         <i class="far fa-smile"></i>
                     </div>
                     <div class="send-input">
-                        <input type="text" name="digit" value="Scrivi un messaggio">
+                        <input id="send" type="text" name="digit" placeholder="Scrivi un messaggio">
                     </div>
                     <div class="send-vocal">
-                        <i class="fas fa-microphone"></i>
+                        <i class="fas fa-microphone active"></i>
+                        <i class="fas fa-paper-plane"></i>
                     </div>
                 </div>
             </div>
         </section>
+
+
+        <div class="template template-sent">
+            <div class="chat-text chat-text-end">
+                <div class="chat-sent">
+                    <p></p>
+                    <small></small>
+                </div>
+            </div>
+        </div>
+        <div class="template template-received">
+            <div class="chat-text chat-text-start">
+                <div class="chat-received">
+                    <p></p>
+                    <small></small>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
