@@ -11,11 +11,11 @@
         <title>Boolzap | Boolean WebChat</title>
     </head>
     <body>
-        <section id="bg-green"></section>
+        <section id="bg-gradient"></section>
         <section id="bg-grey"></section>
         <section class="container">
             <div class="container-left">
-                <div class="header-left">
+                <div class="header-left"> <!-- Rif. Sezione HEADER LEFT CSS -->
                     <div class="header-left-avatar">
                         <img class="avatar" src="img/avatar1.png" alt="avatar">
                     </div>
@@ -25,7 +25,7 @@
                         <i class="fas fa-ellipsis-v"></i>
                     </div>
                 </div>
-                <div class="notification">
+                <div class="notification"> <!-- Rif. Sezione NOTIFICATION CSS -->
                     <div class="notification-icon">
                         <i class="fas fa-bell-slash"></i>
                     </div>
@@ -34,7 +34,7 @@
                         <p>Attiva notifiche desktop</p>
                     </div>
                 </div>
-                <div class="search-bar">
+                <div class="search-bar"> <!-- Rif. Sezione SEARCH BAR CSS -->
                     <div class="search-bar-icon">
                         <i class="fas fa-search"></i>
                     </div>
@@ -42,7 +42,7 @@
                         <input id="search" type="text" name="search" placeholder="Cerca o inizia una nuova chat">
                     </div>
                 </div>
-                <div class="friends">
+                <div class="friends"> <!-- Rif. Sezione FRIENDS CSS -->
                     <div class="friend-chat active">
                         <div class="friend-chat-avatar">
                             <img class="avatar" src="img/avatar2.png" alt="avatar">
@@ -166,13 +166,13 @@
                 </div>
             </div>
             <div class="container-right">
-                <div class="header-right">
+                <div class="header-right"> <!-- Rif. Sezione HEADER RIGHT CSS -->
                     <div class="header-right-avatar">
                         <img class="avatar" src="img/avatar2.png" alt="avatar">
                     </div>
                     <div class="header-right-text">
                         <h3>Marcellino</h3>
-                        <p>Ultimo accesso oggi alle 16:59</p>
+                        <p>Ultimo accesso oggi alle <span id="last-seen">16:59</span></p>
                     </div>
                     <div class="header-right-icons">
                         <i class="fas fa-search"></i>
@@ -180,7 +180,7 @@
                         <i class="fas fa-ellipsis-v"></i>
                     </div>
                 </div>
-                <div id="scrolled" class="chat">
+                <div id="scrolled" class="chat"> <!-- Rif. Sezione CHAT CSS -->
                     <div class="chat-text chat-text-end">
                         <div class="chat-sent">
                             <p>Ciao Marcellino</p>
@@ -260,7 +260,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="send">
+                <div class="send"> <!-- Rif. sezione SEND CSS -->
                     <div class="send-emoji">
                         <i class="far fa-smile"></i>
                     </div>
@@ -268,7 +268,7 @@
                         <input id="send" type="text" name="digit" placeholder="Scrivi un messaggio">
                     </div>
                     <div class="send-vocal">
-                        <i class="fas fa-microphone active"></i>
+                        <i class="fas fa-microphone"></i>
                         <i class="fas fa-paper-plane"></i>
                     </div>
                 </div>
@@ -276,6 +276,8 @@
         </section>
 
 
+
+        <!-- Template Invisibili per l'inserimento e la risposta -->
         <div class="template template-sent">
             <div class="chat-text chat-text-end">
                 <div class="chat-sent">

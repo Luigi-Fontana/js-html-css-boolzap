@@ -1,9 +1,9 @@
 $(document).ready(function(){
-    $('#search').keyup(function(event){
-        var charFilter = $(this).val().toLowerCase();
-        $('.friend-chat').each(function(){
-            var highlightText = $(this).find('h3').text().toLowerCase().includes(charFilter);
-            if (highlightText) {
+    $('#search').keyup(function(event){ // Funzione ricerca
+        var charFilter = $(this).val().toLowerCase(); // Assegno alla variabile il lower case del valore in input
+        $('.friend-chat').each(function(){ // Faccio una ricerca su tutti i contenitori delle friend-chat
+            var highlightText = $(this).find('h3').text().toLowerCase().includes(charFilter); // Assegno a una variabile il check successivo
+            if (highlightText) { // se nell'h3 del contenitore è incluco il valore di input
                 $(this).show();
             } else {
                 $(this).hide();
@@ -11,7 +11,7 @@ $(document).ready(function(){
         });
     });
 
-    var listaRisposte = [
+    var listaRisposte = [ // Array di risposte che verranno generate automaticamente in seguito
         'È soltanto nelle misteriose equazioni dell’amore che si può trovare ogni ragione logica. Io sono qui grazie a te. Tu sei la ragione per cui io esisto. Tu sei tutte le mie ragioni.',
         '"Amore” significa non dover mai dire “mi dispiace”.',
         'Alcune volte perdere il tuo equilibrio per amore è necessario per vivere una vita equilibrata.',
@@ -39,37 +39,43 @@ $(document).ready(function(){
         'Chi salva una vita , salva il mondo intero.'
     ];
 
-    $('.send-input').click(function(){
-        $('.fa-microphone').removeClass('active');
-        $('.fa-paper-plane').addClass('active');
+    $('.fa-paper-plane').hide(); // Inizialmente nascondo l'icona di invio messaggio
+    $(document).on('input', '#send', function () {
+        if ($(this).val().trim().length !== 0) { // Se l'input di invio messaggio non è vuoto
+            $('.fa-microphone').hide(); // Nascondo il microfono e mostro l'aeroplanino
+            $('.fa-paper-plane').show();
+        } else { // Altrimenti viceversa
+            $('.fa-paper-plane').hide();
+            $('.fa-microphone').show();
+        }
     });
 
-    $('.fa-paper-plane').click(function(){
-        var empty = false;
-        $('#send').each(function() {
+    $('.fa-paper-plane').click(function(){ // Se clicco sull'aeroplanino
+        var empty = false; // Variabile sentinella
+        $('#send').each(function() { // Faccio un check sull'input per restituire valore vero o falso
             if ($(this).val() === '') {
                 empty = true;
             }
         });
-        if (empty === false) {
-            sendMessage();
-            scrolled();
-            $('.fa-microphone').addClass('active');
-            $('.fa-paper-plane').removeClass('active');
-            setTimeout(function(){
-                receiveMessage();
-                scrolled();
+        if (empty === false) { // Se il valore uscito fuori è falso (cioè l'input non è vuoto)
+            sendMessage(); // Svolgo la funzione di invio
+            scrolled(); // Svolgo la funzione di autoscorrimento in basso
+            $('.fa-microphone').show(); // Dopo aver inviato il messaggio solito giochino tra microfono e aeroplanino
+            $('.fa-paper-plane').hide();
+            setTimeout(function(){ // Successivamente dopo 1 secondo
+                receiveMessage(); // Svolgo la funzione di risposta automatica
+                scrolled(); // Svolgo la funzione di autoscorrimento in basso
             }, 1000);
         }
     });
 
-    $("#send").keyup(function(event) {
+    $("#send").keyup(function(event) { // Se premo Invio (13) svolgo la funzione precedente assegnata al click dell'aeroplanino
         if (event.keyCode === 13) {
             $(".fa-paper-plane").click();
         }
     });
 
-    function sendMessage(){
+    function sendMessage(){ // Funzione di invio Messaggio con clone e append
         var textToSend = $('#send').val();
         $('#send').val('');
         var newSent = $('.template-sent .chat-text').clone();
@@ -78,27 +84,28 @@ $(document).ready(function(){
         $('.chat').append(newSent);
     };
 
-    function receiveMessage(){
+    function receiveMessage(){ // Funzione di risposta automatica generando randomicamente una delle risposte possibili nell'array risposte
         var indiceRisposte = generaRandom(0, 24);
         var rispostaRandom = listaRisposte[indiceRisposte];
         var newReceived = $('.template-received .chat-text').clone();
         newReceived.find('p').text(rispostaRandom);
         newReceived.find('small').text(getHour());
+        $('#last-seen').text(getHour()); // qui aggiorno l'ultimo accesso in base all'ora dell'ultima risposta (opzionale)
         $('.chat').append(newReceived);
     };
 
-    function getHour(){
+    function getHour(){ // Funzione per estrapolare l'ora attuale con minuti sempre a due cifre
         var currentDate = new Date();
         var dateTime = currentDate.getHours() + ":" + (currentDate.getMinutes() <10?'0':'') + currentDate.getMinutes();
         return dateTime;
     };
 
-    function scrolled() {
+    function scrolled() { // Funzione di autoscorrimento in basso
         var scrollBot = document.getElementById('scrolled');
         scrollBot.scrollTop = scrollBot.scrollHeight;
     }
 
-    function generaRandom(min, max) {
+    function generaRandom(min, max) { // Solita funzione random tra due numeri
         var numeroRandom = Math.floor(Math.random() * (max - min + 1)) + min;
         return numeroRandom;
     }

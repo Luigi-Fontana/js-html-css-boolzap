@@ -17,7 +17,7 @@ i, .avatar {
     text-decoration: underline;
 }
 
-#bg-green {
+#bg-gradient {
     height: 15vh;
     background: rgb(34,193,195);
     background: linear-gradient(90deg, rgba(34,193,195,1) 0%, rgba(255,205,96,1) 100%);
@@ -115,7 +115,7 @@ i, .avatar {
     text-decoration: underline;
     cursor: pointer;
 }
-/* SEARCH-BAR */
+/* SEARCH BAR */
 .search-bar {
     height: 50px;
     background-color: #f7f7f7;
@@ -252,6 +252,10 @@ i, .avatar {
     align-items: center;
 }
 
+.chat-text:last-child {
+    margin-bottom: 30px;
+}
+
 .chat-text-end {
     justify-content: flex-end;
 }
@@ -311,14 +315,6 @@ i, .avatar {
 .send-vocal i {
     font-size: 25px;
     margin-right: 0;
-}
-
-.send-vocal i {
-    display: none;
-}
-
-.send-vocal i.active {
-    display: block;
 }
 
 .send-input {
