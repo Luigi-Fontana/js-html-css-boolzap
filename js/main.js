@@ -45,14 +45,28 @@ $(document).ready(function(){
     });
 
     $('.fa-paper-plane').click(function(){
-        sendMessage();
-        scrolled();
-        $('.fa-microphone').addClass('active');
-        $('.fa-paper-plane').removeClass('active');
-        setTimeout(function(){
-            receiveMessage();
+        var empty = false;
+        $('#send').each(function() {
+            if ($(this).val() === '') {
+                empty = true;
+            }
+        });
+        if (empty === false) {
+            sendMessage();
             scrolled();
-        }, 1000);
+            $('.fa-microphone').addClass('active');
+            $('.fa-paper-plane').removeClass('active');
+            setTimeout(function(){
+                receiveMessage();
+                scrolled();
+            }, 1000);
+        }
+    });
+
+    $("#send").keyup(function(event) {
+        if (event.keyCode === 13) {
+            $(".fa-paper-plane").click();
+        }
     });
 
     function sendMessage(){
@@ -88,10 +102,4 @@ $(document).ready(function(){
         var numeroRandom = Math.floor(Math.random() * (max - min + 1)) + min;
         return numeroRandom;
     }
-
-    $("#send").keyup(function(event) {
-        if (event.keyCode === 13) {
-            $(".fa-paper-plane").click();
-        }
-    });
 });
