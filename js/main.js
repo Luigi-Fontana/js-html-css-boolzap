@@ -51,47 +51,49 @@ $(document).ready(function(){
     });
 
     $('.fa-paper-plane').click(function(){ // Se clicco sull'aeroplanino
-        var empty = false; // Variabile sentinella
-        $('#send').each(function() { // Faccio un check sull'input per restituire valore vero o falso
-            if ($(this).val() === '') {
-                empty = true;
-            }
-        });
-        if (empty === false) { // Se il valore uscito fuori è falso (cioè l'input non è vuoto)
-            sendMessage(); // Svolgo la funzione di invio
-            scrolled(); // Svolgo la funzione di autoscorrimento in basso
-            $('.fa-microphone').show(); // Dopo aver inviato il messaggio solito giochino tra microfono e aeroplanino
-            $('.fa-paper-plane').hide();
-            setTimeout(function(){ // Successivamente dopo 1 secondo
-                receiveMessage(); // Svolgo la funzione di risposta automatica
-                scrolled(); // Svolgo la funzione di autoscorrimento in basso
-            }, 1000);
-        }
+        sendMessage();
     });
 
-    $("#send").keyup(function(event) { // Se premo Invio (13) svolgo la funzione precedente assegnata al click dell'aeroplanino
+    $("#send").keypress(function(event) { // Se premo Invio (13) svolgo la funzione precedente assegnata al click dell'aeroplanino
         if (event.keyCode === 13) {
             $(".fa-paper-plane").click();
         }
     });
 
-    function sendMessage(){ // Funzione di invio Messaggio con clone e append
+    function sendMessage() { // Funzione per mandare un messaggio con risposta
         var textToSend = $('#send').val();
-        $('#send').val('');
-        var newSent = $('.template-sent .chat-text').clone();
-        newSent.find('p').text(textToSend);
-        newSent.find('small').text(getHour());
-        $('.chat').append(newSent);
+        if (textToSend.trim().length > 0) {
+            $('#send').val('');
+            createMessage(textToSend, 'sent');
+            $('.fa-microphone').show(); // Dopo aver inviato il messaggio solito giochino tra microfono e aeroplanino
+            $('.fa-paper-plane').hide();
+            setTimeout(function() {
+                var indiceRisposte = generaRandom(0, 24);
+                var rispostaRandom = listaRisposte[indiceRisposte];
+                createMessage(rispostaRandom, 'received');
+                $('.last-seen').text(getHour());
+            }, 1000);
+        };
     };
 
-    function receiveMessage(){ // Funzione di risposta automatica generando randomicamente una delle risposte possibili nell'array risposte
-        var indiceRisposte = generaRandom(0, 24);
-        var rispostaRandom = listaRisposte[indiceRisposte];
-        var newReceived = $('.template-received .chat-text').clone();
-        newReceived.find('p').text(rispostaRandom);
-        newReceived.find('small').text(getHour());
-        $('#last-seen').text(getHour()); // qui aggiorno l'ultimo accesso in base all'ora dell'ultima risposta (opzionale)
-        $('.chat').append(newReceived);
+    function createMessage(textMessage, sentOrReceived) { // Funzione per creare un messaggio generico
+        var newMessage = $('.template .chat-text').clone();
+        newMessage.find('p').text(textMessage);
+        newMessage.find('small').text(getHour());
+        newMessage.addClass(sentOrReceived);
+        $('.chat').append(newMessage);
+        scrolled();
+        $('.last-message').text(cropMessage(textMessage));
+    };
+
+    function cropMessage(message) { // Funzione per tagliare un messaggio da input
+        var showChar = 35;
+        var points = "...";
+            if(message.length > showChar) {
+                var display = message.substr(0, showChar);
+                var text = display + points;
+            }
+        return text;
     };
 
     function getHour(){ // Funzione per estrapolare l'ora attuale con minuti sempre a due cifre
@@ -100,9 +102,9 @@ $(document).ready(function(){
         return dateTime;
     };
 
-    function scrolled() { // Funzione di autoscorrimento in basso
-        var scrollBot = document.getElementById('scrolled');
-        scrollBot.scrollTop = scrollBot.scrollHeight;
+    function scrolled() { // Funzione di autoscrollamento in basso
+        var pixelScroll = $('.chat').height();
+        $('.chat').scrollTop(pixelScroll);
     }
 
     function generaRandom(min, max) { // Solita funzione random tra due numeri

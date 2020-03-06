@@ -162,8 +162,16 @@ i, .avatar {
     cursor: pointer;
 }
 
+.friend-chat:hover {
+    background-color: #ABFFFA;   
+}
+
 .friend-chat.active {
     background-color: #26c1c1;
+}
+
+.friend-chat.active p {
+    color: black;
 }
 
 .friend-chat-avatar {
@@ -256,16 +264,23 @@ i, .avatar {
     margin-bottom: 30px;
 }
 
-.chat-text-end {
+.sent{
     justify-content: flex-end;
 }
 
-.chat-text-start {
+.sent div {
+    background-color: #dcf8c6;
+}
+
+.received {
     justify-content: flex-start;
 }
 
-.chat-sent,
-.chat-received {
+.received div {
+    background-color: white;
+}
+
+.chat-text div {
     max-width: 35%;
     padding: 8px 10px 2px;
     border-radius: 10px;
@@ -273,14 +288,6 @@ i, .avatar {
     box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.5);
     display: flex;
     flex-direction: column;
-}
-
-.chat-received {
-    background-color: white;
-}
-
-.chat-sent {
-    background-color: #dcf8c6;
 }
 
 .chat-text p {
