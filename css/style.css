@@ -352,7 +352,7 @@ i, .avatar {
     right: 8px;
     top: 28px;
     opacity: 0.9;
-    box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.5);
+    box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.5);
     z-index: 1;
 }
 
