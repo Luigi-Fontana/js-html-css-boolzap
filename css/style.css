@@ -9,6 +9,10 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
+a {
+    text-decoration: none;
+}
+
 i, .avatar {
     cursor: pointer;
 }
@@ -98,7 +102,13 @@ i, .avatar {
 .notification-icon i {
     font-size: 25px;
     color: #26c1c1;
+    display: none;
 }
+
+.notification-icon i.active {
+    display: block;
+}
+
 .notification-text {
     margin-left: 20px;
 }
@@ -114,7 +124,13 @@ i, .avatar {
     color: #606060;
     text-decoration: underline;
     cursor: pointer;
+    display: none;
 }
+
+.notification-text p.active {
+    display: block;
+}
+
 /* SEARCH BAR */
 .search-bar {
     height: 50px;
@@ -202,12 +218,14 @@ i, .avatar {
 .friend-chat-hour {
     width: 15%;
     align-self: flex-start;
+    text-align: right;
 }
 
 .friend-chat-hour p {
     font-size: 12px;
     color: #999999;
     padding-top: 23px;
+    padding-right: 30px;
 }
 /* CONTAINER RIGHT */
 .container-right {
@@ -224,11 +242,6 @@ i, .avatar {
     width: 70%;
     display: flex;
     align-items: center;
-    display: none;
-}
-
-.header-right-chat.active {
-    display: flex;
 }
 
 .header-right-avatar img {
@@ -277,7 +290,7 @@ i, .avatar {
     justify-content: flex-end;
 }
 
-.sent div {
+.sent .chat-message {
     background-color: #dcf8c6;
 }
 
@@ -285,33 +298,71 @@ i, .avatar {
     justify-content: flex-start;
 }
 
-.received div {
+.received .chat-message {
     background-color: white;
 }
 
-.chat-text div {
+.chat-text .chat-message {
     max-width: 35%;
     padding: 8px 10px 8px;
     border-radius: 10px;
     margin: 1px 80px;
     box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.5);
     display: flex;
+    position: relative;
 }
 
-.chat-text p {
+.chat-message p {
     font-size: 15px;
     color: #252525;
     padding-right: 15px;
 }
 
-.chat-text small,
-.chat-text svg {
+.chat-message small,
+.chat-message svg {
     font-size: 11px;
     color: #999999;
     align-self: flex-end;
     margin-top: 4px;
     margin-bottom: -4px;
     padding-left: 3px;
+}
+
+.chat-message i {
+    color: #505050;
+    font-size: 20px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: none;
+    padding: 0 10px 12px;
+}
+
+.chat-message:hover i {
+    display: block;
+}
+
+.message-dropdown {
+    width: 157px;
+    background-color: white;
+    padding: 10px 20px;
+    border-radius: 2px;
+    position: absolute;
+    right: 8px;
+    top: 28px;
+    opacity: 0.9;
+    box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.5);
+    z-index: 1;
+}
+
+.message-dropdown {
+    display: none;
+}
+
+.message-dropdown p {
+    font-size: 13px;
+    color: #505050;
+    padding: 10px 0;
 }
 /* SEND */
 .send {

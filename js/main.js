@@ -2,47 +2,33 @@ $(document).ready(function(){
     $('#search').keyup(function(event){ // Funzione ricerca
         var charFilter = $(this).val().toLowerCase(); // Assegno alla variabile il lower case del valore in input
         $('.friend-chat').each(function(){ // Faccio una ricerca su tutti i contenitori delle friend-chat
-            var highlightText = $(this).find('h3').text().toLowerCase().includes(charFilter); // Assegno a una variabile il check successivo
-            if (highlightText) { // se nell'h3 del contenitore è incluco il valore di input
+            var highlightText = $(this).find('h3').text().toLowerCase().includes(charFilter); // Assegno a una variabile il check se l'input è incluso nell'h3 in questione
+            if (highlightText) { // Check positivo
                 $(this).show();
-            } else {
+            } else { // Check negativo
                 $(this).hide();
             }
         });
     });
 
-    var myList = $('#friends');
-    var listItems = myList.find('.last-seen').get();
-
-    listItems.sort(function (a, b){
-    return $(a).text().toUpperCase().localeCompare($(b).text().toUpperCase());
+    $('.notification-text p').click(function(){ // Funzione sul click del testo attiva/disattiva notifiche
+        $('.notification-icon i').toggleClass('active'); // Mostra la campanella relativa
+        $('.notification-text p').toggleClass('active'); // Mostra il testo relativo
     });
 
-    $.each(listItems, function(index, item) {
-    myList.append(item);
-    });
-
-    $('.fa-bell').hide();
-    $('.notification-text p').hide();
-    $('.notification-text p.active').show();
-    $('.notification-text p').click(function(){
-        $('.notification-icon i').toggle();
-        $('.notification-text p').toggle();
-    });
-
-    $('.friend-chat').click(function(){
-        $('.friend-chat').removeClass('active');
-        $(this).addClass('active');
-        var friend = $(this).data('friend');
-        $('.chat').each(function(){
-            if (friend == $(this).data('friend')) {
+    $('.friend-chat').click(function(){ // Funzione sul click delle friend-chat
+        $('.friend-chat').removeClass('active'); // Intanto togli a tutte la classe active (in CSS gli ho dato stile diverso)
+        $(this).addClass('active'); // E aggiungi la classe solo a quello cliccato
+        var thisAvatar = $(this).find('img').attr('src'); // Creo una variabile con il valore del src dell'immagine dell'avatar cliccato
+        var thisName = $(this).find('h3').text(); // Variabile con il Nome dell'amico cliccato
+        var thisHour = $(this).find('.last-seen').text(); // Variabile con l'ultimo accesso dell'amico cliccato
+        $('.header-right-avatar img').attr('src', thisAvatar); // Assegno all'header-right i valori appena dichiarati così da avere in alto sempre i dati della chat premuta
+        $('.header-right-text h3').text(thisName);
+        $('.header-right-text .last-seen').text(thisHour);
+        var friend = $(this).data('friend'); // Faccio una foto del valore del data della chat cliccata
+        $('.chat').each(function(){ // Ciclo each su tutte le chat
+            if (friend == $(this).data('friend')) { // Se il data corrisponde nascondo tutto e mostro solo quella
                 $('.chat').removeClass('active');
-                $(this).addClass('active');
-            };
-        });
-        $('.header-right-chat').each(function(){
-            if (friend == $(this).data('friend')) {
-                $('.header-right-chat').removeClass('active');
                 $(this).addClass('active');
             };
         });
@@ -87,7 +73,7 @@ $(document).ready(function(){
         }
     });
 
-    $('.fa-paper-plane').click(function(){ // Se clicco sull'aeroplanino
+    $('.fa-paper-plane').click(function(){ // Se clicco sull'aeroplanino (invio)
         sendMessage();
     });
 
@@ -97,19 +83,23 @@ $(document).ready(function(){
         }
     });
 
+    $('.chat-message i').click(function(){ // Se clicco sulla freccetta faccio il toggle del menù a tendina
+        $(this).next('.message-dropdown').slideToggle(100);
+    });
+
     function sendMessage() { // Funzione per mandare un messaggio con risposta
-        var textToSend = $('#send').val();
-        if (textToSend.trim().length > 0) {
-            $('#send').val('');
-            createMessage(textToSend, 'sent');
+        var textToSend = $('#send').val(); // Foto del valore dell'input
+        if (textToSend.trim().length > 0) { // Se non è vuoto vado avanti
+            $('#send').val(''); // E intanto riazzero l'input
+            createMessage(textToSend, 'sent'); // Funzione messaggio usando la variabile creata prima
             $('.fa-microphone').show(); // Dopo aver inviato il messaggio solito giochino tra microfono e aeroplanino
             $('.fa-paper-plane').hide();
-            setTimeout(function() {
+            setTimeout(function() { // Dopo 1 secondo risposta automatica
                 var indiceRisposte = generaRandom(0, 24);
                 var rispostaRandom = listaRisposte[indiceRisposte];
-                createMessage(rispostaRandom, 'received');
-                $('.friend-chat.active').find('.last-seen').text(getHour());
-                $('.header-right-chat.active').find('.last-seen').text(getHour());
+                createMessage(rispostaRandom, 'received'); // Risposta scelta random
+                $('.friend-chat.active').find('.last-seen').text(getHour()); // Aggiorno i vari "ultima visita" del sito
+                $('.header-right-chat').find('.last-seen').text(getHour());
             }, 1000);
         };
     };
@@ -118,19 +108,20 @@ $(document).ready(function(){
         var newMessage = $('.template .chat-text').clone();
         newMessage.find('p').text(textMessage);
         newMessage.find('small').text(getHour());
-        newMessage.addClass(sentOrReceived);
-        if (newMessage.hasClass('received')) {
+        newMessage.addClass(sentOrReceived); // Per dargli lo stile appropritato
+        if (newMessage.hasClass('received')) { // Se è ricevuto nascondi le flag di lettura
             newMessage.find('svg').hide();
         }
         $('.chat.active').append(newMessage);
         scrolled();
-        $('.friend-chat.active').find('.last-message').text(cropMessage(textMessage));
+        $('.friend-chat.active').find('.last-message').text(cropMessage(textMessage)); // Aggiorna con ultimo messaggio e accesso la finestra laterale della chat
+        $('.friend-chat.active').find('.last-seen').text(getHour());
     };
 
     function cropMessage(message) { // Funzione per tagliare un messaggio da input
-        var showChar = 35;
-        var points = "...";
-            if(message.length > showChar) {
+        var showChar = 35; // Numero di caratteri che voglio mostrare
+        var points = "..."; // Puntini di sospensione
+            if(message.length > showChar) { // Se il messaggio è più lungo taglialo in base alla variabile showChar
                 var display = message.substr(0, showChar);
                 var text = display + points;
             }
@@ -139,7 +130,7 @@ $(document).ready(function(){
 
     function getHour(){ // Funzione per estrapolare l'ora attuale con minuti sempre a due cifre
         var currentDate = new Date();
-        var dateTime = currentDate.getHours() + ":" + (currentDate.getMinutes() <10?'0':'') + currentDate.getMinutes();
+        var dateTime = currentDate.getHours() + ":" + (currentDate.getMinutes() <10?'0':'') + currentDate.getMinutes(); // se getMinutes è minore di 10 aggiungi uno zero
         return dateTime;
     };
 
