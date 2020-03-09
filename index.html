@@ -5,10 +5,10 @@
         <script src="https://kit.fontawesome.com/07f1e373ab.js" crossorigin="anonymous"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="js/main.js" charset="utf-8"></script>
-        <link id="favicon" rel="shortcut icon" type="image/png" href="https://www.techspot.com/images2/downloads/topdownload/2016/05/WhatsApp_Logo_1.png" src="https://www.techspot.com/images2/downloads/topdownload/2016/05/WhatsApp_Logo_1.png">
+        <link rel="shortcut icon" href="https://www.boolean.careers/images/favicon/favicon.ico" type="image/x-icon">
         <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="css/style.css">
-        <title>Boolzap | Boolean WebChat</title>
+        <title>Boolzapp | Boolean WebChat</title>
     </head>
     <body>
         <section id="bg-gradient"></section>
@@ -28,10 +28,12 @@
                 <div class="notification"> <!-- Rif. Sezione NOTIFICATION CSS -->
                     <div class="notification-icon">
                         <i class="fas fa-bell-slash"></i>
+                        <i class="fas fa-bell"></i>
                     </div>
                     <div class="notification-text">
                         <h3>Ricevi notifiche di nuovi messaggi</h3>
-                        <p>Attiva notifiche desktop</p>
+                        <p class="active">Attiva notifiche desktop</p>
+                        <p>Disattiva notifiche desktop</p>
                     </div>
                 </div>
                 <div class="search-bar"> <!-- Rif. Sezione SEARCH BAR CSS -->
@@ -43,7 +45,7 @@
                     </div>
                 </div>
                 <div class="friends"> <!-- Rif. Sezione FRIENDS CSS -->
-                    <div class="friend-chat active">
+                    <div data-friend="1" class="friend-chat active">
                         <div class="friend-chat-avatar">
                             <img class="avatar" src="img/avatar2.png" alt="avatar">
                         </div>
@@ -55,109 +57,109 @@
                             <p><span class="last-seen">16:59</span></p>
                         </div>
                     </div>
-                    <div class="friend-chat">
+                    <div data-friend="2" class="friend-chat">
                         <div class="friend-chat-avatar">
                             <img class="avatar" src="img/avatar3.png" alt="avatar">
                         </div>
                         <div class="friend-chat-text">
                             <h3>Cosima</h3>
-                            <p class="last-message"></p>
+                            <p class="last-message">Ciao Luigi</p>
                         </div>
                         <div class="friend-chat-hour">
                             <p><span class="last-seen">16:32</span></p>
                         </div>
                     </div>
-                    <div class="friend-chat">
+                    <div data-friend="3" class="friend-chat">
                         <div class="friend-chat-avatar">
                             <img class="avatar" src="img/avatar4.png" alt="avatar">
                         </div>
                         <div class="friend-chat-text">
                             <h3>Gennarino</h3>
-                            <p class="last-message"></p>
+                            <p class="last-message">Bella bro</p>
                         </div>
                         <div class="friend-chat-hour">
                             <p><span class="last-seen">16:30</span></p>
                         </div>
                     </div>
-                    <div class="friend-chat">
+                    <div data-friend="4" class="friend-chat">
                         <div class="friend-chat-avatar">
                             <img class="avatar" src="img/avatar5.png" alt="avatar">
                         </div>
                         <div class="friend-chat-text">
                             <h3>Giadona</h3>
-                            <p class="last-message"></p>
+                            <p class="last-message">Che tenero! <3</p>
                         </div>
                         <div class="friend-chat-hour">
                             <p><span class="last-seen">16:18</span></p>
                         </div>
                     </div>
-                    <div class="friend-chat">
+                    <div data-friend="5" class="friend-chat">
                         <div class="friend-chat-avatar">
                             <img class="avatar" src="img/avatar6.png" alt="avatar">
                         </div>
                         <div class="friend-chat-text">
                             <h3>Lucone</h3>
-                            <p class="last-message"></p>
+                            <p class="last-message">Dimmi tutto</p>
                         </div>
                         <div class="friend-chat-hour">
                             <p><span class="last-seen">15:49</span></p>
                         </div>
                     </div>
-                    <div class="friend-chat">
+                    <div data-friend="6" class="friend-chat">
                         <div class="friend-chat-avatar">
                             <img class="avatar" src="img/avatar7.png" alt="avatar">
                         </div>
                         <div class="friend-chat-text">
                             <h3>Alfredino</h3>
-                            <p class="last-message"></p>
+                            <p class="last-message">Stasera non posso</p>
                         </div>
                         <div class="friend-chat-hour">
                             <p><span class="last-seen">15:48</span></p>
                         </div>
                     </div>
-                    <div class="friend-chat">
+                    <div data-friend="7" class="friend-chat">
                         <div class="friend-chat-avatar">
                             <img class="avatar" src="img/avatar8.png" alt="avatar">
                         </div>
                         <div class="friend-chat-text">
                             <h3>Elisa</h3>
-                            <p class="last-message"></p>
+                            <p class="last-message">Non prendermi in giro :P</p>
                         </div>
                         <div class="friend-chat-hour">
                             <p><span class="last-seen">15:30</span></p>
                         </div>
                     </div>
-                    <div class="friend-chat">
+                    <div data-friend="8" class="friend-chat">
                         <div class="friend-chat-avatar">
                             <img class="avatar" src="img/avatar9.png" alt="avatar">
                         </div>
                         <div class="friend-chat-text">
                             <h3>Gandalf</h3>
-                            <p class="last-message"></p>
+                            <p class="last-message">TU. NON PUOI. PASSARE!</p>
                         </div>
                         <div class="friend-chat-hour">
                             <p><span class="last-seen">15:00</span></p>
                         </div>
                     </div>
-                    <div class="friend-chat">
+                    <div data-friend="9" class="friend-chat">
                         <div class="friend-chat-avatar">
                             <img class="avatar" src="img/avatar10.png" alt="avatar">
                         </div>
                         <div class="friend-chat-text">
                             <h3>Albert</h3>
-                            <p class="last-message"></p>
+                            <p class="last-message">SI. PU&#211;. FARE!</p>
                         </div>
                         <div class="friend-chat-hour">
                             <p><span class="last-seen">14:27</span></p>
                         </div>
                     </div>
-                    <div class="friend-chat">
+                    <div data-friend="10" class="friend-chat">
                         <div class="friend-chat-avatar">
                             <img class="avatar" src="img/avatar11.png" alt="avatar">
                         </div>
                         <div class="friend-chat-text">
                             <h3>Melissa</h3>
-                            <p class="last-message"></p>
+                            <p class="last-message">And I'm sixteen.</p>
                         </div>
                         <div class="friend-chat-hour">
                             <p><span class="last-seen">14:15</span></p>
@@ -167,12 +169,95 @@
             </div>
             <div class="container-right">
                 <div class="header-right"> <!-- Rif. Sezione HEADER RIGHT CSS -->
-                    <div class="header-right-avatar">
-                        <img class="avatar" src="img/avatar2.png" alt="avatar">
+                    <div data-friend="1" class="header-right-chat active">
+                        <div class="header-right-avatar">
+                            <img class="avatar" src="img/avatar2.png" alt="avatar">
+                        </div>
+                        <div class="header-right-text">
+                            <h3>Marcellino</h3>
+                            <p>Ultimo accesso oggi alle <span class="last-seen">16:59</span></p>
+                        </div>
                     </div>
-                    <div class="header-right-text">
-                        <h3>Marcellino</h3>
-                        <p>Ultimo accesso oggi alle <span class="last-seen">16:59</span></p>
+                    <div data-friend="2" class="header-right-chat">
+                        <div class="header-right-avatar">
+                            <img class="avatar" src="img/avatar3.png" alt="avatar">
+                        </div>
+                        <div class="header-right-text">
+                            <h3>Cosima</h3>
+                            <p>Ultimo accesso oggi alle <span class="last-seen">16:32</span></p>
+                        </div>
+                    </div>
+                    <div data-friend="3" class="header-right-chat">
+                        <div class="header-right-avatar">
+                            <img class="avatar" src="img/avatar4.png" alt="avatar">
+                        </div>
+                        <div class="header-right-text">
+                            <h3>Gennarino</h3>
+                            <p>Ultimo accesso oggi alle <span class="last-seen">16:30</span></p>
+                        </div>
+                    </div>
+                    <div data-friend="4" class="header-right-chat">
+                        <div class="header-right-avatar">
+                            <img class="avatar" src="img/avatar5.png" alt="avatar">
+                        </div>
+                        <div class="header-right-text">
+                            <h3>Giadona</h3>
+                            <p>Ultimo accesso oggi alle <span class="last-seen">16:18</span></p>
+                        </div>
+                    </div>
+                    <div data-friend="5" class="header-right-chat">
+                        <div class="header-right-avatar">
+                            <img class="avatar" src="img/avatar6.png" alt="avatar">
+                        </div>
+                        <div class="header-right-text">
+                            <h3>Lucone</h3>
+                            <p>Ultimo accesso oggi alle <span class="last-seen">15:49</span></p>
+                        </div>
+                    </div>
+                    <div data-friend="6" class="header-right-chat">
+                        <div class="header-right-avatar">
+                            <img class="avatar" src="img/avatar7.png" alt="avatar">
+                        </div>
+                        <div class="header-right-text">
+                            <h3>Alfredino</h3>
+                            <p>Ultimo accesso oggi alle <span class="last-seen">15:48</span></p>
+                        </div>
+                    </div>
+                    <div data-friend="7" class="header-right-chat">
+                        <div class="header-right-avatar">
+                            <img class="avatar" src="img/avatar8.png" alt="avatar">
+                        </div>
+                        <div class="header-right-text">
+                            <h3>Elisa</h3>
+                            <p>Ultimo accesso oggi alle <span class="last-seen">15:30</span></p>
+                        </div>
+                    </div>
+                    <div data-friend="8" class="header-right-chat">
+                        <div class="header-right-avatar">
+                            <img class="avatar" src="img/avatar9.png" alt="avatar">
+                        </div>
+                        <div class="header-right-text">
+                            <h3>Gandalf</h3>
+                            <p>Ultimo accesso oggi alle <span class="last-seen">15:00</span></p>
+                        </div>
+                    </div>
+                    <div data-friend="9" class="header-right-chat">
+                        <div class="header-right-avatar">
+                            <img class="avatar" src="img/avatar10.png" alt="avatar">
+                        </div>
+                        <div class="header-right-text">
+                            <h3>Albert</h3>
+                            <p>Ultimo accesso oggi alle <span class="last-seen">14:27</span></p>
+                        </div>
+                    </div>
+                    <div data-friend="10" class="header-right-chat">
+                        <div class="header-right-avatar">
+                            <img class="avatar" src="img/avatar11.png" alt="avatar">
+                        </div>
+                        <div class="header-right-text">
+                            <h3>Melissa</h3>
+                            <p>Ultimo accesso oggi alle <span class="last-seen">14:15</span></p>
+                        </div>
                     </div>
                     <div class="header-right-icons">
                         <i class="fas fa-search"></i>
@@ -180,17 +265,173 @@
                         <i class="fas fa-ellipsis-v"></i>
                     </div>
                 </div>
-                <div class="chat"> <!-- Rif. Sezione CHAT CSS -->
+                <div data-friend="1" class="chat active"> <!-- Rif. Sezione CHAT CSS -->
                     <div class="chat-text sent">
                         <div>
                             <p>Ciao Marcellino</p>
-                            <small>10:18</small>
+                            <small>16:58</small>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 15" width="16" height="15">
+                                <path fill="currentColor" d="M15.01 3.316l-.478-.372a.365.365 0 0 0-.51.063L8.666 9.879a.32.32 0 0 1-.484.033l-.358-.325a.319.319 0 0 0-.484.032l-.378.483a.418.418 0 0 0 .036.541l1.32 1.266c.143.14.361.125.484-.033l6.272-8.048a.366.366 0 0 0-.064-.512zm-4.1 0l-.478-.372a.365.365 0 0 0-.51.063L4.566 9.879a.32.32 0 0 1-.484.033L1.891 7.769a.366.366 0 0 0-.515.006l-.423.433a.364.364 0 0 0 .006.514l3.258 3.185c.143.14.361.125.484-.033l6.272-8.048a.365.365 0 0 0-.063-.51z"></path>
+                            </svg>
                         </div>
                     </div>
                     <div class="chat-text received">
                         <div>
                             <p>Come Stai?</p>
-                            <small>10:18</small>
+                            <small>16:59</small>
+                        </div>
+                    </div>
+                </div>
+                <div data-friend="2" class="chat">
+                    <div class="chat-text sent">
+                        <div>
+                            <p>Ciao Cosima</p>
+                            <small>16:31</small>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 15" width="16" height="15">
+                                <path fill="currentColor" d="M15.01 3.316l-.478-.372a.365.365 0 0 0-.51.063L8.666 9.879a.32.32 0 0 1-.484.033l-.358-.325a.319.319 0 0 0-.484.032l-.378.483a.418.418 0 0 0 .036.541l1.32 1.266c.143.14.361.125.484-.033l6.272-8.048a.366.366 0 0 0-.064-.512zm-4.1 0l-.478-.372a.365.365 0 0 0-.51.063L4.566 9.879a.32.32 0 0 1-.484.033L1.891 7.769a.366.366 0 0 0-.515.006l-.423.433a.364.364 0 0 0 .006.514l3.258 3.185c.143.14.361.125.484-.033l6.272-8.048a.365.365 0 0 0-.063-.51z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="chat-text received">
+                        <div>
+                            <p>Ciao Luigi</p>
+                            <small>16:32</small>
+                        </div>
+                    </div>
+                </div>
+                <div data-friend="3" class="chat">
+                    <div class="chat-text sent">
+                        <div>
+                            <p>Wela Gennarino</p>
+                            <small>16:29</small>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 15" width="16" height="15">
+                                <path fill="currentColor" d="M15.01 3.316l-.478-.372a.365.365 0 0 0-.51.063L8.666 9.879a.32.32 0 0 1-.484.033l-.358-.325a.319.319 0 0 0-.484.032l-.378.483a.418.418 0 0 0 .036.541l1.32 1.266c.143.14.361.125.484-.033l6.272-8.048a.366.366 0 0 0-.064-.512zm-4.1 0l-.478-.372a.365.365 0 0 0-.51.063L4.566 9.879a.32.32 0 0 1-.484.033L1.891 7.769a.366.366 0 0 0-.515.006l-.423.433a.364.364 0 0 0 .006.514l3.258 3.185c.143.14.361.125.484-.033l6.272-8.048a.365.365 0 0 0-.063-.51z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="chat-text received">
+                        <div>
+                            <p>Bella bro</p>
+                            <small>16:30</small>
+                        </div>
+                    </div>
+                </div>
+                <div data-friend="4" class="chat">
+                    <div class="chat-text sent">
+                        <div>
+                            <p>Giadona bella</p>
+                            <small>16:17</small>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 15" width="16" height="15">
+                                <path fill="currentColor" d="M15.01 3.316l-.478-.372a.365.365 0 0 0-.51.063L8.666 9.879a.32.32 0 0 1-.484.033l-.358-.325a.319.319 0 0 0-.484.032l-.378.483a.418.418 0 0 0 .036.541l1.32 1.266c.143.14.361.125.484-.033l6.272-8.048a.366.366 0 0 0-.064-.512zm-4.1 0l-.478-.372a.365.365 0 0 0-.51.063L4.566 9.879a.32.32 0 0 1-.484.033L1.891 7.769a.366.366 0 0 0-.515.006l-.423.433a.364.364 0 0 0 .006.514l3.258 3.185c.143.14.361.125.484-.033l6.272-8.048a.365.365 0 0 0-.063-.51z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="chat-text received">
+                        <div>
+                            <p>Che tenero! <3</p>
+                            <small>16:18</small>
+                        </div>
+                    </div>
+                </div>
+                <div data-friend="5" class="chat">
+                    <div class="chat-text sent">
+                        <div>
+                            <p>Devo darti una notiziona</p>
+                            <small>15:48</small>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 15" width="16" height="15">
+                                <path fill="currentColor" d="M15.01 3.316l-.478-.372a.365.365 0 0 0-.51.063L8.666 9.879a.32.32 0 0 1-.484.033l-.358-.325a.319.319 0 0 0-.484.032l-.378.483a.418.418 0 0 0 .036.541l1.32 1.266c.143.14.361.125.484-.033l6.272-8.048a.366.366 0 0 0-.064-.512zm-4.1 0l-.478-.372a.365.365 0 0 0-.51.063L4.566 9.879a.32.32 0 0 1-.484.033L1.891 7.769a.366.366 0 0 0-.515.006l-.423.433a.364.364 0 0 0 .006.514l3.258 3.185c.143.14.361.125.484-.033l6.272-8.048a.365.365 0 0 0-.063-.51z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="chat-text received">
+                        <div>
+                            <p>Dimmi tutto</p>
+                            <small>15:49</small>
+                        </div>
+                    </div>
+                </div>
+                <div data-friend="6" class="chat">
+                    <div class="chat-text sent">
+                        <div>
+                            <p>Giochiamo Stasera?</p>
+                            <small>15:48</small>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 15" width="16" height="15">
+                                <path fill="currentColor" d="M15.01 3.316l-.478-.372a.365.365 0 0 0-.51.063L8.666 9.879a.32.32 0 0 1-.484.033l-.358-.325a.319.319 0 0 0-.484.032l-.378.483a.418.418 0 0 0 .036.541l1.32 1.266c.143.14.361.125.484-.033l6.272-8.048a.366.366 0 0 0-.064-.512zm-4.1 0l-.478-.372a.365.365 0 0 0-.51.063L4.566 9.879a.32.32 0 0 1-.484.033L1.891 7.769a.366.366 0 0 0-.515.006l-.423.433a.364.364 0 0 0 .006.514l3.258 3.185c.143.14.361.125.484-.033l6.272-8.048a.365.365 0 0 0-.063-.51z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="chat-text received">
+                        <div>
+                            <p>Stasera non posso</p>
+                            <small>15:48</small>
+                        </div>
+                    </div>
+                </div>
+                <div data-friend="7" class="chat">
+                    <div class="chat-text sent">
+                        <div>
+                            <p>Elisa Nazionale!</p>
+                            <small>15:29</small>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 15" width="16" height="15">
+                                <path fill="currentColor" d="M15.01 3.316l-.478-.372a.365.365 0 0 0-.51.063L8.666 9.879a.32.32 0 0 1-.484.033l-.358-.325a.319.319 0 0 0-.484.032l-.378.483a.418.418 0 0 0 .036.541l1.32 1.266c.143.14.361.125.484-.033l6.272-8.048a.366.366 0 0 0-.064-.512zm-4.1 0l-.478-.372a.365.365 0 0 0-.51.063L4.566 9.879a.32.32 0 0 1-.484.033L1.891 7.769a.366.366 0 0 0-.515.006l-.423.433a.364.364 0 0 0 .006.514l3.258 3.185c.143.14.361.125.484-.033l6.272-8.048a.365.365 0 0 0-.063-.51z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="chat-text received">
+                        <div>
+                            <p>Non prendermi in giro :P</p>
+                            <small>15:30</small>
+                        </div>
+                    </div>
+                </div>
+                <div data-friend="8" class="chat">
+                    <div class="chat-text sent">
+                        <div>
+                            <p>Io posso passare?</p>
+                            <small>14:59</small>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 15" width="16" height="15">
+                                <path fill="currentColor" d="M15.01 3.316l-.478-.372a.365.365 0 0 0-.51.063L8.666 9.879a.32.32 0 0 1-.484.033l-.358-.325a.319.319 0 0 0-.484.032l-.378.483a.418.418 0 0 0 .036.541l1.32 1.266c.143.14.361.125.484-.033l6.272-8.048a.366.366 0 0 0-.064-.512zm-4.1 0l-.478-.372a.365.365 0 0 0-.51.063L4.566 9.879a.32.32 0 0 1-.484.033L1.891 7.769a.366.366 0 0 0-.515.006l-.423.433a.364.364 0 0 0 .006.514l3.258 3.185c.143.14.361.125.484-.033l6.272-8.048a.365.365 0 0 0-.063-.51z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="chat-text received">
+                        <div>
+                            <p>TU. NON PUOI. PASSARE!</p>
+                            <small>15:00</small>
+                        </div>
+                    </div>
+                </div>
+                <div data-friend="9" class="chat">
+                    <div class="chat-text sent">
+                        <div>
+                            <p>Si può fare?</p>
+                            <small>14:26</small>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 15" width="16" height="15">
+                                <path fill="currentColor" d="M15.01 3.316l-.478-.372a.365.365 0 0 0-.51.063L8.666 9.879a.32.32 0 0 1-.484.033l-.358-.325a.319.319 0 0 0-.484.032l-.378.483a.418.418 0 0 0 .036.541l1.32 1.266c.143.14.361.125.484-.033l6.272-8.048a.366.366 0 0 0-.064-.512zm-4.1 0l-.478-.372a.365.365 0 0 0-.51.063L4.566 9.879a.32.32 0 0 1-.484.033L1.891 7.769a.366.366 0 0 0-.515.006l-.423.433a.364.364 0 0 0 .006.514l3.258 3.185c.143.14.361.125.484-.033l6.272-8.048a.365.365 0 0 0-.063-.51z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="chat-text received">
+                        <div>
+                            <p>SI. PU&#211;. FARE!</p>
+                            <small>14:27</small>
+                        </div>
+                    </div>
+                </div>
+                <div data-friend="10" class="chat">
+                    <div class="chat-text sent">
+                        <div>
+                            <p>My name is Melissa...</p>
+                            <small>14:14</small>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 15" width="16" height="15">
+                                <path fill="currentColor" d="M15.01 3.316l-.478-.372a.365.365 0 0 0-.51.063L8.666 9.879a.32.32 0 0 1-.484.033l-.358-.325a.319.319 0 0 0-.484.032l-.378.483a.418.418 0 0 0 .036.541l1.32 1.266c.143.14.361.125.484-.033l6.272-8.048a.366.366 0 0 0-.064-.512zm-4.1 0l-.478-.372a.365.365 0 0 0-.51.063L4.566 9.879a.32.32 0 0 1-.484.033L1.891 7.769a.366.366 0 0 0-.515.006l-.423.433a.364.364 0 0 0 .006.514l3.258 3.185c.143.14.361.125.484-.033l6.272-8.048a.365.365 0 0 0-.063-.51z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="chat-text received">
+                        <div>
+                            <p>And I'm sixteen.</p>
+                            <small>14:15</small>
                         </div>
                     </div>
                 </div>
@@ -217,6 +458,9 @@
                 <div>
                     <p></p>
                     <small></small>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 15" width="16" height="15">
+                        <path fill="currentColor" d="M15.01 3.316l-.478-.372a.365.365 0 0 0-.51.063L8.666 9.879a.32.32 0 0 1-.484.033l-.358-.325a.319.319 0 0 0-.484.032l-.378.483a.418.418 0 0 0 .036.541l1.32 1.266c.143.14.361.125.484-.033l6.272-8.048a.366.366 0 0 0-.064-.512zm-4.1 0l-.478-.372a.365.365 0 0 0-.51.063L4.566 9.879a.32.32 0 0 1-.484.033L1.891 7.769a.366.366 0 0 0-.515.006l-.423.433a.364.364 0 0 0 .006.514l3.258 3.185c.143.14.361.125.484-.033l6.272-8.048a.365.365 0 0 0-.063-.51z"></path>
+                    </svg>
                 </div>
             </div>
         </div>

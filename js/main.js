@@ -11,6 +11,43 @@ $(document).ready(function(){
         });
     });
 
+    var myList = $('#friends');
+    var listItems = myList.find('.last-seen').get();
+
+    listItems.sort(function (a, b){
+    return $(a).text().toUpperCase().localeCompare($(b).text().toUpperCase());
+    });
+
+    $.each(listItems, function(index, item) {
+    myList.append(item);
+    });
+
+    $('.fa-bell').hide();
+    $('.notification-text p').hide();
+    $('.notification-text p.active').show();
+    $('.notification-text p').click(function(){
+        $('.notification-icon i').toggle();
+        $('.notification-text p').toggle();
+    });
+
+    $('.friend-chat').click(function(){
+        $('.friend-chat').removeClass('active');
+        $(this).addClass('active');
+        var friend = $(this).data('friend');
+        $('.chat').each(function(){
+            if (friend == $(this).data('friend')) {
+                $('.chat').removeClass('active');
+                $(this).addClass('active');
+            };
+        });
+        $('.header-right-chat').each(function(){
+            if (friend == $(this).data('friend')) {
+                $('.header-right-chat').removeClass('active');
+                $(this).addClass('active');
+            };
+        });
+    });
+
     var listaRisposte = [ // Array di risposte che verranno generate automaticamente in seguito
         'È soltanto nelle misteriose equazioni dell’amore che si può trovare ogni ragione logica. Io sono qui grazie a te. Tu sei la ragione per cui io esisto. Tu sei tutte le mie ragioni.',
         '"Amore” significa non dover mai dire “mi dispiace”.',
@@ -71,7 +108,8 @@ $(document).ready(function(){
                 var indiceRisposte = generaRandom(0, 24);
                 var rispostaRandom = listaRisposte[indiceRisposte];
                 createMessage(rispostaRandom, 'received');
-                $('.last-seen').text(getHour());
+                $('.friend-chat.active').find('.last-seen').text(getHour());
+                $('.header-right-chat.active').find('.last-seen').text(getHour());
             }, 1000);
         };
     };
@@ -81,9 +119,12 @@ $(document).ready(function(){
         newMessage.find('p').text(textMessage);
         newMessage.find('small').text(getHour());
         newMessage.addClass(sentOrReceived);
-        $('.chat').append(newMessage);
+        if (newMessage.hasClass('received')) {
+            newMessage.find('svg').hide();
+        }
+        $('.chat.active').append(newMessage);
         scrolled();
-        $('.last-message').text(cropMessage(textMessage));
+        $('.friend-chat.active').find('.last-message').text(cropMessage(textMessage));
     };
 
     function cropMessage(message) { // Funzione per tagliare un messaggio da input

@@ -150,6 +150,7 @@ i, .avatar {
 /* FRIENDS */
 .friends {
     height: calc(100% - 210px);
+    background-color: #ededed;
     overflow-y: scroll;
 }
 
@@ -163,7 +164,7 @@ i, .avatar {
 }
 
 .friend-chat:hover {
-    background-color: #ABFFFA;   
+    background-color: #ABFFFA;
 }
 
 .friend-chat.active {
@@ -218,18 +219,21 @@ i, .avatar {
     display: flex;
     align-items: center;
 }
-.header-right-avatar {
-    width: 10%;
+
+.header-right-chat {
+    width: 70%;
     display: flex;
-    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+.header-right-chat.active {
+    display: flex;
 }
 
 .header-right-avatar img {
     width: 40px;
-}
-
-.header-right-text {
-    width: 60%;
+    margin: 0 30px;
 }
 
 .header-right-text h3 {
@@ -249,10 +253,15 @@ i, .avatar {
 /* CHAT */
 .chat {
     height: calc(100% - 120px);
-    background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2F66.media.tumblr.com%2F44451ddf448de2235f8370c138b00121%2Ftumblr_ouztgbH0CG1vj8v9mo3_1280.png&f=1&nofb=1');
-    background-size: contain;
+    background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.wallpapersafari.com%2F56%2F11%2Fupi173.jpg&f=1&nofb=1');
+    background-size: cover;
     overflow-y: scroll;
     padding-top: 30px;
+    display: none;
+}
+
+.chat.active {
+    display: block !important;
 }
 
 .chat-text {
@@ -282,25 +291,27 @@ i, .avatar {
 
 .chat-text div {
     max-width: 35%;
-    padding: 8px 10px 2px;
+    padding: 8px 10px 8px;
     border-radius: 10px;
     margin: 1px 80px;
     box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.5);
     display: flex;
-    flex-direction: column;
 }
 
 .chat-text p {
     font-size: 15px;
     color: #252525;
-    padding-right: 45px;
+    padding-right: 15px;
 }
 
-.chat-text small {
+.chat-text small,
+.chat-text svg {
     font-size: 11px;
     color: #999999;
     align-self: flex-end;
-    margin-top: -10px;
+    margin-top: 4px;
+    margin-bottom: -4px;
+    padding-left: 3px;
 }
 /* SEND */
 .send {
