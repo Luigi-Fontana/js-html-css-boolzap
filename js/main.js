@@ -41,7 +41,8 @@ $(document).ready(function(){
     $(document).on('click', '.message-dropdown .delete', function(){ // Se clicco su cancella Messaggio mi elimina quel messaggio
         $(this).parentsUntil('.chat').remove();
         var lastMessage = $('.chat.active').find('.chat-text:last-child .chat-message .message-text').text(); // Assegno a una variabile il testo dell'ultimo messaggio della chat attiva
-        $('.friend-chat.active').find('.last-message').text(lastMessage); // Sostituisco questo valore al testo nella chat laterale attiva
+        var cropLast = cropMessage(lastMessage); // Lo taglio
+        $('.friend-chat.active').find('.last-message').text(cropLast); // Sostituisco questo valore al testo nella chat laterale attiva
         var lastSeen = $('.chat.active').find('.chat-text:last-child .chat-message small').text(); // Assegno a una variabile l'orario dell'ultimo messaggio della chat attiva
         $('.friend-chat.active').find('.last-seen').text(lastSeen); // Sostituisco questo valore all'orario nella chat laterale attiva
     });
