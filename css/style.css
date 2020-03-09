@@ -266,6 +266,7 @@ i, .avatar {
 /* CHAT */
 .chat {
     height: calc(100% - 120px);
+    background-color: #ededed;
     background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.wallpapersafari.com%2F56%2F11%2Fupi173.jpg&f=1&nofb=1');
     background-size: cover;
     overflow-y: scroll;
@@ -363,6 +364,10 @@ i, .avatar {
     font-size: 13px;
     color: #505050;
     padding: 10px 0;
+}
+
+.message-dropdown p:hover {
+    color: black;
 }
 /* SEND */
 .send {

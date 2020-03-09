@@ -34,6 +34,14 @@ $(document).ready(function(){
         });
     });
 
+    $(document).on('click', '.chat-message i', function(){ // Se clicco sulla freccetta faccio il toggle del menù a tendina
+        $(this).parent('.chat-message').children('.message-dropdown').slideToggle(100);
+    });
+
+    $(document).on('click', '.message-dropdown .delete', function(){ // Se clicco su cancella Messaggio mi elimina quel messaggio
+        $(this).parentsUntil('.chat').remove();
+    });
+
     var listaRisposte = [ // Array di risposte che verranno generate automaticamente in seguito
         'È soltanto nelle misteriose equazioni dell’amore che si può trovare ogni ragione logica. Io sono qui grazie a te. Tu sei la ragione per cui io esisto. Tu sei tutte le mie ragioni.',
         '"Amore” significa non dover mai dire “mi dispiace”.',
@@ -83,10 +91,6 @@ $(document).ready(function(){
         }
     });
 
-    $('.chat-message i').click(function(){ // Se clicco sulla freccetta faccio il toggle del menù a tendina
-        $(this).next('.message-dropdown').slideToggle(100);
-    });
-
     function sendMessage() { // Funzione per mandare un messaggio con risposta
         var textToSend = $('#send').val(); // Foto del valore dell'input
         if (textToSend.trim().length > 0) { // Se non è vuoto vado avanti
@@ -106,7 +110,7 @@ $(document).ready(function(){
 
     function createMessage(textMessage, sentOrReceived) { // Funzione per creare un messaggio generico
         var newMessage = $('.template .chat-text').clone();
-        newMessage.find('p').text(textMessage);
+        newMessage.find('.message-text').text(textMessage);
         newMessage.find('small').text(getHour());
         newMessage.addClass(sentOrReceived); // Per dargli lo stile appropritato
         if (newMessage.hasClass('received')) { // Se è ricevuto nascondi le flag di lettura
