@@ -130,9 +130,10 @@ $(document).ready(function(){
     function cropMessage(message) { // Funzione per tagliare un messaggio da input
         var showChar = 35; // Numero di caratteri che voglio mostrare
         var points = "..."; // Puntini di sospensione
+        var text = message;
             if(message.length > showChar) { // Se il messaggio è più lungo taglialo in base alla variabile showChar
                 var display = message.substr(0, showChar);
-                var text = display + points;
+                text = display + points;
             }
         return text;
     };
