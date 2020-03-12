@@ -311,6 +311,7 @@ i, .avatar {
     box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.5);
     display: flex;
     position: relative;
+    text-align: left;
 }
 
 .chat-message p {
@@ -404,6 +405,6 @@ i, .avatar {
     color: #999999;
 }
 
-.template {
+.chat-text-received svg {
     display: none;
 }

@@ -35,7 +35,8 @@ $(document).ready(function(){
     });
 
     $(document).on('click', '.chat-message i', function(){ // Se clicco sulla freccetta faccio il toggle del menù a tendina
-        $(this).parent('.chat-message').children('.message-dropdown').slideToggle(100);
+        $('.chat-message i').not(this).siblings('.message-dropdown').slideUp(100);
+        $(this).siblings('.message-dropdown').slideToggle(100);
     });
 
     $(document).on('click', '.message-dropdown .delete', function(){ // Se clicco su cancella Messaggio mi elimina quel messaggio
@@ -86,6 +87,10 @@ $(document).ready(function(){
         }
     });
 
+    var source = $("#template-message").html(); // Clono il template message
+    var template = Handlebars.compile(source); // lo do in pasto a handlebars
+
+
     $('.fa-paper-plane').click(function(){ // Se clicco sull'aeroplanino (invio)
         sendMessage();
     });
@@ -114,14 +119,13 @@ $(document).ready(function(){
     };
 
     function createMessage(textMessage, sentOrReceived) { // Funzione per creare un messaggio generico
-        var newMessage = $('.template .chat-text').clone();
-        newMessage.find('.message-text').text(textMessage);
-        newMessage.find('small').text(getHour());
-        newMessage.addClass(sentOrReceived); // Per dargli lo stile appropritato
-        if (newMessage.hasClass('received')) { // Se è ricevuto nascondi le flag di lettura
-            newMessage.find('svg').hide();
-        }
-        $('.chat.active').append(newMessage);
+        var newMessage = {
+            message: textMessage,
+            hour: getHour(),
+            class: sentOrReceived
+        };
+        var html = template(newMessage) // Popolo il template con il contenuto del messaggio
+        $('.chat.active').append(html);
         scrolled();
         $('.friend-chat.active').find('.last-message').text(cropMessage(textMessage)); // Aggiorna con ultimo messaggio e accesso la finestra laterale della chat
         $('.friend-chat.active').find('.last-seen').text(getHour());
