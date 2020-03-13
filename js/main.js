@@ -34,6 +34,17 @@ $(document).ready(function(){
         });
     });
 
+    $('.fa-paper-plane').hide(); // Inizialmente nascondo l'icona di invio messaggio
+    $(document).on('input', '#send', function () {
+        if ($(this).val().trim().length !== 0) { // Se l'input di invio messaggio non è vuoto
+            $('.fa-microphone').hide(); // Nascondo il microfono e mostro l'aeroplanino
+            $('.fa-paper-plane').show();
+        } else { // Altrimenti viceversa
+            $('.fa-paper-plane').hide();
+            $('.fa-microphone').show();
+        }
+    });
+
     $(document).on('click', '.chat-message i', function(){ // Se clicco sulla freccetta faccio il toggle del menù a tendina
         $('.chat-message i').not(this).siblings('.message-dropdown').slideUp(100);
         $(this).siblings('.message-dropdown').slideToggle(100);
@@ -75,21 +86,121 @@ $(document).ready(function(){
         'Il cuore di una donna è un profondo oceano di segreti.',
         'Chi salva una vita , salva il mondo intero.'
     ];
-
-    $('.fa-paper-plane').hide(); // Inizialmente nascondo l'icona di invio messaggio
-    $(document).on('input', '#send', function () {
-        if ($(this).val().trim().length !== 0) { // Se l'input di invio messaggio non è vuoto
-            $('.fa-microphone').hide(); // Nascondo il microfono e mostro l'aeroplanino
-            $('.fa-paper-plane').show();
-        } else { // Altrimenti viceversa
-            $('.fa-paper-plane').hide();
-            $('.fa-microphone').show();
-        }
-    });
-
+    var listaMessaggi = { // Oggetto contenente i messaggi che mostro al caricamento della pagina
+        c0: [
+            {
+                text: 'Ciao Marcellino',
+                direction: 'sent'
+            },
+            {
+                text: 'Come stai?',
+                direction: 'received'
+            }
+        ],
+        c1: [
+            {
+                text: 'Ciao Cosima',
+                direction: 'sent'
+            },
+            {
+                text: 'Ciao Luigi',
+                direction: 'received'
+            }
+        ],
+        c2: [
+            {
+                text: 'Wela Gennarino',
+                direction: 'sent'
+            },
+            {
+                text: 'Bella bro',
+                direction: 'received'
+            }
+        ],
+        c3: [
+            {
+                text: 'Giadona bella',
+                direction: 'sent'
+            },
+            {
+                text: 'Che tenero! <3',
+                direction: 'received'
+            }
+        ],
+        c4: [
+            {
+                text: 'Devo darti una notiziona',
+                direction: 'sent'
+            },
+            {
+                text: 'Dimmi tutto',
+                direction: 'received'
+            }
+        ],
+        c5: [
+            {
+                text: 'Giochiamo stasera?',
+                direction: 'sent'
+            },
+            {
+                text: 'Stasera non posso',
+                direction: 'received'
+            }
+        ],
+        c6: [
+            {
+                text: 'Elisa Nazionale!',
+                direction: 'sent'
+            },
+            {
+                text: 'Non prendermi in giro:P',
+                direction: 'received'
+            }
+        ],
+        c7: [
+            {
+                text: 'Io posso passare?',
+                direction: 'sent'
+            },
+            {
+                text: 'TU. NON PUOI. PASSARE!',
+                direction: 'received'
+            }
+        ],
+        c8: [
+            {
+                text: 'Si può fare?',
+                direction: 'sent'
+            },
+            {
+                text: 'SI. PUÓ. FARE!',
+                direction: 'received'
+            }
+        ],
+        c9: [
+            {
+                text: 'My name is Melissa...',
+                direction: 'sent'
+            },
+            {
+                text: 'CAnd I\'m sixteen',
+                direction: 'received'
+            }
+        ]
+    };
     var source = $("#template-message").html(); // Clono il template message
     var template = Handlebars.compile(source); // lo do in pasto a handlebars
 
+    for (var key in listaMessaggi) {
+        var chatNumber = key[1];
+        for (var i = 0; i < key.length; i++) {
+            var object = listaMessaggi[key][i];
+            var text = object.text;
+            var direction = object.direction;
+            var selector = $('.chat[data-friend="' + chatNumber + '"]');
+            createMessage(text, direction, selector);
+        }
+    };
 
     $('.fa-paper-plane').click(function(){ // Se clicco sull'aeroplanino (invio)
         sendMessage();
@@ -105,40 +216,40 @@ $(document).ready(function(){
         var textToSend = $('#send').val(); // Foto del valore dell'input
         if (textToSend.trim().length > 0) { // Se non è vuoto vado avanti
             $('#send').val(''); // E intanto riazzero l'input
-            createMessage(textToSend, 'sent'); // Funzione messaggio usando la variabile creata prima
+            createMessage(textToSend, 'sent', '.chat.active'); // Funzione messaggio usando la variabile creata prima
             $('.fa-microphone').show(); // Dopo aver inviato il messaggio solito giochino tra microfono e aeroplanino
             $('.fa-paper-plane').hide();
             setTimeout(function() { // Dopo 1 secondo risposta automatica
                 var indiceRisposte = generaRandom(0, 24);
                 var rispostaRandom = listaRisposte[indiceRisposte];
-                createMessage(rispostaRandom, 'received'); // Risposta scelta random
+                createMessage(rispostaRandom, 'received', '.chat.active'); // Risposta scelta random
                 $('.friend-chat.active').find('.last-seen').text(getHour()); // Aggiorno i vari "ultima visita" del sito
                 $('.header-right-chat').find('.last-seen').text(getHour());
             }, 1000);
         };
     };
 
-    function createMessage(textMessage, sentOrReceived) { // Funzione per creare un messaggio generico
+    function createMessage(textMessage, sentOrReceived, selectChat) { // Funzione per creare un messaggio generico
         var newMessage = {
             message: textMessage,
             hour: getHour(),
             class: sentOrReceived
         };
         var html = template(newMessage) // Popolo il template con il contenuto del messaggio
-        $('.chat.active').append(html);
+        $(selectChat).append(html);
         scrolled();
-        $('.friend-chat.active').find('.last-message').text(cropMessage(textMessage)); // Aggiorna con ultimo messaggio e accesso la finestra laterale della chat
-        $('.friend-chat.active').find('.last-seen').text(getHour());
+        // $('.friend-chat.active').find('.last-message').text(cropMessage(textMessage)); // Aggiorna con ultimo messaggio e accesso la finestra laterale della chat
+        // $('.friend-chat.active').find('.last-seen').text(getHour());
     };
 
     function cropMessage(message) { // Funzione per tagliare un messaggio da input
         var showChar = 35; // Numero di caratteri che voglio mostrare
         var points = "..."; // Puntini di sospensione
         var text = message;
-            if(message.length > showChar) { // Se il messaggio è più lungo taglialo in base alla variabile showChar
+            if (message.length > showChar) { // Se il messaggio è più lungo taglialo in base alla variabile showChar
                 var display = message.substr(0, showChar);
                 text = display + points;
-            }
+            };
         return text;
     };
 

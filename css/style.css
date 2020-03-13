@@ -405,6 +405,6 @@ i, .avatar {
     color: #999999;
 }
 
-.chat-text-received svg {
+.chat-text.received svg {
     display: none;
 }
