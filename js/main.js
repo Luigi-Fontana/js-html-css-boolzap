@@ -90,100 +90,120 @@ $(document).ready(function(){
         c0: [
             {
                 text: 'Ciao Marcellino',
+                hour: '16:58',
                 direction: 'sent'
             },
             {
                 text: 'Come stai?',
+                hour: '16:59',
                 direction: 'received'
             }
         ],
         c1: [
             {
                 text: 'Ciao Cosima',
+                hour: '16:31',
                 direction: 'sent'
             },
             {
                 text: 'Ciao Luigi',
+                hour: '16:32',
                 direction: 'received'
             }
         ],
         c2: [
             {
                 text: 'Wela Gennarino',
+                hour: '16:29',
                 direction: 'sent'
             },
             {
                 text: 'Bella bro',
+                hour: '16:30',
                 direction: 'received'
             }
         ],
         c3: [
             {
                 text: 'Giadona bella',
+                hour: '16:17',
                 direction: 'sent'
             },
             {
                 text: 'Che tenero! <3',
+                hour: '16:18',
                 direction: 'received'
             }
         ],
         c4: [
             {
                 text: 'Devo darti una notiziona',
+                hour: '15:48',
                 direction: 'sent'
             },
             {
                 text: 'Dimmi tutto',
+                hour: '15:49',
                 direction: 'received'
             }
         ],
         c5: [
             {
                 text: 'Giochiamo stasera?',
+                hour: '15:47',
                 direction: 'sent'
             },
             {
                 text: 'Stasera non posso',
+                hour: '15:48',
                 direction: 'received'
             }
         ],
         c6: [
             {
                 text: 'Elisa Nazionale!',
+                hour: '15:29',
                 direction: 'sent'
             },
             {
-                text: 'Non prendermi in giro:P',
+                text: 'Non prendermi in giro :P',
+                hour: '15:30',
                 direction: 'received'
             }
         ],
         c7: [
             {
                 text: 'Io posso passare?',
+                hour: '14:59',
                 direction: 'sent'
             },
             {
                 text: 'TU. NON PUOI. PASSARE!',
+                hour: '15:00',
                 direction: 'received'
             }
         ],
         c8: [
             {
                 text: 'Si può fare?',
+                hour: '14:26',
                 direction: 'sent'
             },
             {
                 text: 'SI. PUÓ. FARE!',
+                hour: '14:27',
                 direction: 'received'
             }
         ],
         c9: [
             {
                 text: 'My name is Melissa...',
+                hour: '14:14',
                 direction: 'sent'
             },
             {
-                text: 'CAnd I\'m sixteen',
+                text: 'And I\'m sixteen',
+                hour: '14:15',
                 direction: 'received'
             }
         ]
@@ -191,14 +211,15 @@ $(document).ready(function(){
     var source = $("#template-message").html(); // Clono il template message
     var template = Handlebars.compile(source); // lo do in pasto a handlebars
 
-    for (var key in listaMessaggi) {
-        var chatNumber = key[1];
-        for (var i = 0; i < key.length; i++) {
-            var object = listaMessaggi[key][i];
-            var text = object.text;
+    for (var key in listaMessaggi) { // Ciclo all'interno dell'oggetto
+        var chatNumber = key[1]; // Assegno a una variabile la chiave attuale con cifra in posizione 1
+        for (var i = 0; i < key.length; i++) { // Ciclo all'interno dell'array della chiave
+            var object = listaMessaggi[key][i]; // Assegno a una variabile l'oggetto attuale
+            var text = object.text; // Estrapolo i valori delle 3 chiavi
+            var hour = object.hour;
             var direction = object.direction;
-            var selector = $('.chat[data-friend="' + chatNumber + '"]');
-            createMessage(text, direction, selector);
+            var selector = $('.chat[data-friend="' + chatNumber + '"]'); // Assegno a una variabile la chat attuale ottenuta con la chiave attuale
+            createMessage(text, hour, direction, selector); // Faccio la funziona Crea Messaggio con tutti questi valori
         }
     };
 
@@ -216,30 +237,32 @@ $(document).ready(function(){
         var textToSend = $('#send').val(); // Foto del valore dell'input
         if (textToSend.trim().length > 0) { // Se non è vuoto vado avanti
             $('#send').val(''); // E intanto riazzero l'input
-            createMessage(textToSend, 'sent', '.chat.active'); // Funzione messaggio usando la variabile creata prima
+            createMessage(textToSend, getHour(), 'sent', '.chat.active'); // Funzione messaggio usando la variabile creata prima
+            $('.friend-chat.active').find('.last-message').text(cropMessage(textToSend)); // Aggiorna con ultimo messaggio e accesso la finestra laterale della chat
+            $('.friend-chat.active').find('.last-seen').text(getHour());
             $('.fa-microphone').show(); // Dopo aver inviato il messaggio solito giochino tra microfono e aeroplanino
             $('.fa-paper-plane').hide();
             setTimeout(function() { // Dopo 1 secondo risposta automatica
                 var indiceRisposte = generaRandom(0, 24);
                 var rispostaRandom = listaRisposte[indiceRisposte];
-                createMessage(rispostaRandom, 'received', '.chat.active'); // Risposta scelta random
+                createMessage(rispostaRandom, getHour(), 'received', '.chat.active'); // Risposta scelta random
+                $('.friend-chat.active').find('.last-message').text(cropMessage(rispostaRandom));
+                $('.friend-chat.active').find('.last-seen').text(getHour());
                 $('.friend-chat.active').find('.last-seen').text(getHour()); // Aggiorno i vari "ultima visita" del sito
                 $('.header-right-chat').find('.last-seen').text(getHour());
             }, 1000);
         };
     };
 
-    function createMessage(textMessage, sentOrReceived, selectChat) { // Funzione per creare un messaggio generico
-        var newMessage = {
+    function createMessage(textMessage, getHour, sentOrReceived, selectChat) { // Funzione per creare un messaggio generico
+        var newMessage = { // Definisco un oggetto base
             message: textMessage,
-            hour: getHour(),
+            hour: getHour,
             class: sentOrReceived
         };
-        var html = template(newMessage) // Popolo il template con il contenuto del messaggio
-        $(selectChat).append(html);
+        var html = template(newMessage) // Popolo il template con il contenuto dell'oggetto
+        $(selectChat).append(html); // Lo appendo alla chat attiva
         scrolled();
-        // $('.friend-chat.active').find('.last-message').text(cropMessage(textMessage)); // Aggiorna con ultimo messaggio e accesso la finestra laterale della chat
-        // $('.friend-chat.active').find('.last-seen').text(getHour());
     };
 
     function cropMessage(message) { // Funzione per tagliare un messaggio da input
