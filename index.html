@@ -45,126 +45,16 @@
                     </div>
                 </div>
                 <div class="friends"> <!-- Rif. Sezione FRIENDS CSS -->
-                    <div data-friend="0" class="friend-chat active">
-                        <div class="friend-chat-avatar">
-                            <img class="avatar" src="img/avatar2.png" alt="avatar">
-                        </div>
-                        <div class="friend-chat-text">
-                            <h3>Marcellino</h3>
-                            <p class="last-message">Come stai?</p>
-                        </div>
-                        <div class="friend-chat-hour">
-                            <p><span class="last-seen">16:59</span></p>
-                        </div>
-                    </div>
-                    <div data-friend="1" class="friend-chat">
-                        <div class="friend-chat-avatar">
-                            <img class="avatar" src="img/avatar3.png" alt="avatar">
-                        </div>
-                        <div class="friend-chat-text">
-                            <h3>Cosima</h3>
-                            <p class="last-message">Ciao Luigi</p>
-                        </div>
-                        <div class="friend-chat-hour">
-                            <p><span class="last-seen">16:32</span></p>
-                        </div>
-                    </div>
-                    <div data-friend="2" class="friend-chat">
-                        <div class="friend-chat-avatar">
-                            <img class="avatar" src="img/avatar4.png" alt="avatar">
-                        </div>
-                        <div class="friend-chat-text">
-                            <h3>Gennarino</h3>
-                            <p class="last-message">Bella bro</p>
-                        </div>
-                        <div class="friend-chat-hour">
-                            <p><span class="last-seen">16:30</span></p>
-                        </div>
-                    </div>
-                    <div data-friend="3" class="friend-chat">
-                        <div class="friend-chat-avatar">
-                            <img class="avatar" src="img/avatar5.png" alt="avatar">
-                        </div>
-                        <div class="friend-chat-text">
-                            <h3>Giadona</h3>
-                            <p class="last-message">Che tenero! <3</p>
-                        </div>
-                        <div class="friend-chat-hour">
-                            <p><span class="last-seen">16:18</span></p>
-                        </div>
-                    </div>
-                    <div data-friend="4" class="friend-chat">
-                        <div class="friend-chat-avatar">
-                            <img class="avatar" src="img/avatar6.png" alt="avatar">
-                        </div>
-                        <div class="friend-chat-text">
-                            <h3>Lucone</h3>
-                            <p class="last-message">Dimmi tutto</p>
-                        </div>
-                        <div class="friend-chat-hour">
-                            <p><span class="last-seen">15:49</span></p>
-                        </div>
-                    </div>
-                    <div data-friend="5" class="friend-chat">
-                        <div class="friend-chat-avatar">
-                            <img class="avatar" src="img/avatar7.png" alt="avatar">
-                        </div>
-                        <div class="friend-chat-text">
-                            <h3>Alfredino</h3>
-                            <p class="last-message">Stasera non posso</p>
-                        </div>
-                        <div class="friend-chat-hour">
-                            <p><span class="last-seen">15:48</span></p>
-                        </div>
-                    </div>
-                    <div data-friend="6" class="friend-chat">
-                        <div class="friend-chat-avatar">
-                            <img class="avatar" src="img/avatar8.png" alt="avatar">
-                        </div>
-                        <div class="friend-chat-text">
-                            <h3>Elisa</h3>
-                            <p class="last-message">Non prendermi in giro :P</p>
-                        </div>
-                        <div class="friend-chat-hour">
-                            <p><span class="last-seen">15:30</span></p>
-                        </div>
-                    </div>
-                    <div data-friend="7" class="friend-chat">
-                        <div class="friend-chat-avatar">
-                            <img class="avatar" src="img/avatar9.png" alt="avatar">
-                        </div>
-                        <div class="friend-chat-text">
-                            <h3>Gandalf</h3>
-                            <p class="last-message">TU. NON PUOI. PASSARE!</p>
-                        </div>
-                        <div class="friend-chat-hour">
-                            <p><span class="last-seen">15:00</span></p>
-                        </div>
-                    </div>
-                    <div data-friend="8" class="friend-chat">
-                        <div class="friend-chat-avatar">
-                            <img class="avatar" src="img/avatar10.png" alt="avatar">
-                        </div>
-                        <div class="friend-chat-text">
-                            <h3>Albert</h3>
-                            <p class="last-message">SI. PU&#211;. FARE!</p>
-                        </div>
-                        <div class="friend-chat-hour">
-                            <p><span class="last-seen">14:27</span></p>
-                        </div>
-                    </div>
-                    <div data-friend="9" class="friend-chat">
-                        <div class="friend-chat-avatar">
-                            <img class="avatar" src="img/avatar11.png" alt="avatar">
-                        </div>
-                        <div class="friend-chat-text">
-                            <h3>Melissa</h3>
-                            <p class="last-message">And I'm sixteen.</p>
-                        </div>
-                        <div class="friend-chat-hour">
-                            <p><span class="last-seen">14:15</span></p>
-                        </div>
-                    </div>
+                    <div data-friend="0" class="friend-chat active"></div>
+                    <div data-friend="1" class="friend-chat"></div>
+                    <div data-friend="2" class="friend-chat"></div>
+                    <div data-friend="3" class="friend-chat"></div>
+                    <div data-friend="4" class="friend-chat"></div>
+                    <div data-friend="5" class="friend-chat"></div>
+                    <div data-friend="6" class="friend-chat"></div>
+                    <div data-friend="7" class="friend-chat"></div>
+                    <div data-friend="8" class="friend-chat"></div>
+                    <div data-friend="9" class="friend-chat"></div>
                 </div>
             </div>
             <div class="container-right">
@@ -209,8 +99,19 @@
             </div>
         </section>
 
-
-
+        <!-- Template Handlebars per la selezione chat -->
+        <script id="template-chat" type="text/x-handlebars-template">
+            <div class="friend-chat-avatar">
+                <img class="avatar" src="{{source}}" alt="avatar">
+            </div>
+            <div class="friend-chat-text">
+                <h3>{{name}}</h3>
+                <p class="last-message">{{message}}</p>
+            </div>
+            <div class="friend-chat-hour">
+                <p><span class="last-seen">{{hour}}</span></p>
+            </div>
+        </script>
         <!-- Template Handlebars per l'inserimento e la risposta -->
         <script id="template-message" type="text/x-handlebars-template">
             <div class="chat-text {{class}}">
@@ -229,7 +130,6 @@
                 </div>
             </div>
         </script>
-
 
         <script src="js/main.js" charset="utf-8"></script>
     </body>

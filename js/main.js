@@ -59,33 +59,11 @@ $(document).ready(function(){
         $('.friend-chat.active').find('.last-seen').text(lastSeen); // Sostituisco questo valore all'orario nella chat laterale attiva
     });
 
-    var listaRisposte = [ // Array di risposte che verranno generate automaticamente in seguito
-        'È soltanto nelle misteriose equazioni dell’amore che si può trovare ogni ragione logica. Io sono qui grazie a te. Tu sei la ragione per cui io esisto. Tu sei tutte le mie ragioni.',
-        '"Amore” significa non dover mai dire “mi dispiace”.',
-        'Alcune volte perdere il tuo equilibrio per amore è necessario per vivere una vita equilibrata.',
-        'La gente spesso definisce impossibili cose che semplicemente non ha mai visto.',
-        'Sono salito sulla cattedra per ricordare a me stesso che dobbiamo sempre guardare le cose da angolazioni diverse. E il mondo appare diverso da quassù. Non vi ho convinti? Venite a vedere voi stessi. Coraggio! È proprio quando credete di sapere qualcosa che dovete guardarla da un’altra prospettiva.',
-        'Ogni minuto che passa è un’occasione per rivoluzionare tutto completamente.',
-        'Non permettere mai a nessuno di dirti che non sai fare qualcosa. Se hai un sogno tu lo devi proteggere. Quando le persone non sanno fare qualcosa lo dicono a te che non la sai fare. Se vuoi qualcosa, vai e inseguila. Punto.',
-        'Perché, senza l’amaro, amico mio, il dolce non è tanto dolce.',
-        'Quando non sei in grado di combattere abbraccia il tuo nemico. Se ha le braccia intorno a te non può puntarti contro il fucile.',
-        'Sono le scelte che facciamo… che dimostrano quel che siamo veramente, molto più delle nostre capacità.',
-        'La vera follia è fare finta di essere felici, fare finta che il modo in cui ti vanno le cose sia il modo in cui devono andare per il resto della tua vita, tutti i desideri, le speranze, tutte le gioie, le emozioni e le passioni che la vita ti ha tolto sono lì davanti a te, puoi riprenderti tutto!',
-        'Non scriviamo e leggiamo poesie perché è carino. Noi leggiamo e scriviamo poesie perché siamo membri della razza umana, e la razza umana è piena di passione. Medicina, legge, economia, ingegneria sono nobili professioni, necessarie al nostro sostentamento. Ma la poesia, la bellezza, il romanticismo, l’amore… sono queste le cose che ti tengono in vita.',
-        'La vita è come una scatola di cioccolatini, non sai mai quello che ti capita!',
-        'Andai nei boschi perché volevo vivere con saggezza e profondità… e succhiare tutto il midollo della vita, sbaragliare tutto ciò che non era vita e non scoprire in punto di morte che non ero vissuto.',
-        'Prima o poi capirai, come ho fatto anch’io, che una cosa è conoscere il sentiero giusto, un’altra è imboccarlo.',
-        'Ogni persona è un abisso, vengono le vertigini a guardarci dentro.',
-        'Prima di cambiare il mondo, devi capire che ne fai parte anche tu: non puoi restare ai margini e guardare dentro.',
-        'Non può piovere per sempre!',
-        'L’amore più bello è quello che risveglia l’anima e che ci fa desiderare di arrivare più in alto, è quello che incendia il nostro cuore e che porta la pace nella nostra mente.',
-        'Se vuoi qualcosa nella vita…datti da fare e prendila!',
-        'Io ho bisogno di credere che qualcosa di straordinario sia possibile.',
-        'Perché l’amore non è innamorarsi di un bel sedere o di un fisico perfetto. L’amore non è andare in giro e vantarsi perché si ha una ‘fidanzata perfetta’ o un ‘ragazzo sexy’. L’amore non è fermarsi alle apparenze. L’amore è andare oltre: l’amore è scavare nel profondo per trovare l’anima, guardare oltre ciò che siamo esteriormente, non fermarsi alla taglia del reggiseno, o dei jeans. L’amore è scovare quello che c’è dentro al nostro corpo, che è solamente l’involucro della nostra essenza.',
-        'Esattamente questo quello che voglio, nessuna pietà… da dove viene, che cosa ha fatto… io me ne frego.',
-        'Il cuore di una donna è un profondo oceano di segreti.',
-        'Chi salva una vita , salva il mondo intero.'
-    ];
+    var source = $("#template-message").html(); // Clono il template message
+    var sourceTwo = $("#template-chat").html(); // Clono il template chat
+    var template = Handlebars.compile(source); // lo do in pasto a handlebars
+    var templateTwo = Handlebars.compile(sourceTwo);
+
     var listaMessaggi = { // Oggetto contenente i messaggi che mostro al caricamento della pagina
         c0: [
             {
@@ -202,15 +180,12 @@ $(document).ready(function(){
                 direction: 'sent'
             },
             {
-                text: 'And I\'m sixteen',
+                text: 'And I\'m sixteen.',
                 hour: '14:15',
                 direction: 'received'
             }
         ]
     };
-    var source = $("#template-message").html(); // Clono il template message
-    var template = Handlebars.compile(source); // lo do in pasto a handlebars
-
     for (var key in listaMessaggi) { // Ciclo all'interno dell'oggetto
         var chatNumber = key[1]; // Assegno a una variabile la chiave attuale con cifra in posizione 1
         for (var i = 0; i < key.length; i++) { // Ciclo all'interno dell'array della chiave
@@ -222,6 +197,102 @@ $(document).ready(function(){
             createMessage(text, hour, direction, selector); // Faccio la funziona Crea Messaggio con tutti questi valori
         }
     };
+
+    var listaChat = [ // Array contente gli oggetti delle chat
+        {
+            source: 'img/avatar2.png',
+            name: 'Marcellino',
+            message: 'Come stai?',
+            hour: '16:59'
+        },
+        {
+            source: 'img/avatar3.png',
+            name: 'Cosima',
+            message: 'Ciao Luigi',
+            hour: '16:32'
+        },
+        {
+            source: 'img/avatar4.png',
+            name: 'Gennarino',
+            message: 'Bella bro',
+            hour: '16:30'
+        },
+        {
+            source: 'img/avatar5.png',
+            name: 'Giadona',
+            message: 'Che tenero! <3',
+            hour: '16:18'
+        },
+        {
+            source: 'img/avatar6.png',
+            name: 'Lucone',
+            message: 'Dimmi tutto',
+            hour: '15:49'
+        },
+        {
+            source: 'img/avatar7.png',
+            name: 'Alfredino',
+            message: 'Stasera non posso',
+            hour: '15:48'
+        },
+        {
+            source: 'img/avatar8.png',
+            name: 'Elisa',
+            message: 'Non prendermi in giro :P',
+            hour: '15:30'
+        },
+        {
+            source: 'img/avatar9.png',
+            name: 'Gandalf',
+            message: 'TU. NON PUOI. PASSARE!',
+            hour: '15:00'
+        },
+        {
+            source: 'img/avatar10.png',
+            name: 'Albert',
+            message: 'SI. PUÓ. FARE!',
+            hour: '14:27'
+        },
+        {
+            source: 'img/avatar11.png',
+            name: 'Melissa',
+            message: 'And I\'m sixteen.',
+            hour: '14:15'
+        }
+    ];
+    for (var i = 0; i < listaChat.length; i++) { // Ciclo su questo array
+        var layout = listaChat[i]; // Faccio la foto dell'oggetto ciclato
+        var selectChatTwo = $('.friend-chat[data-friend="' + i + '"]'); // Assegno a una variabile la chat attuale ottenuta con l'indice dell'array
+        var htmlTwo = templateTwo(layout); // Popolo il template
+        $(selectChatTwo).append(htmlTwo); // E lo appendo nella chat giusta
+    }
+    var listaRisposte = [ // Array di risposte che verranno generate automaticamente in seguito
+        'È soltanto nelle misteriose equazioni dell’amore che si può trovare ogni ragione logica. Io sono qui grazie a te. Tu sei la ragione per cui io esisto. Tu sei tutte le mie ragioni.',
+        '"Amore” significa non dover mai dire “mi dispiace”.',
+        'Alcune volte perdere il tuo equilibrio per amore è necessario per vivere una vita equilibrata.',
+        'La gente spesso definisce impossibili cose che semplicemente non ha mai visto.',
+        'Sono salito sulla cattedra per ricordare a me stesso che dobbiamo sempre guardare le cose da angolazioni diverse. E il mondo appare diverso da quassù. Non vi ho convinti? Venite a vedere voi stessi. Coraggio! È proprio quando credete di sapere qualcosa che dovete guardarla da un’altra prospettiva.',
+        'Ogni minuto che passa è un’occasione per rivoluzionare tutto completamente.',
+        'Non permettere mai a nessuno di dirti che non sai fare qualcosa. Se hai un sogno tu lo devi proteggere. Quando le persone non sanno fare qualcosa lo dicono a te che non la sai fare. Se vuoi qualcosa, vai e inseguila. Punto.',
+        'Perché, senza l’amaro, amico mio, il dolce non è tanto dolce.',
+        'Quando non sei in grado di combattere abbraccia il tuo nemico. Se ha le braccia intorno a te non può puntarti contro il fucile.',
+        'Sono le scelte che facciamo… che dimostrano quel che siamo veramente, molto più delle nostre capacità.',
+        'La vera follia è fare finta di essere felici, fare finta che il modo in cui ti vanno le cose sia il modo in cui devono andare per il resto della tua vita, tutti i desideri, le speranze, tutte le gioie, le emozioni e le passioni che la vita ti ha tolto sono lì davanti a te, puoi riprenderti tutto!',
+        'Non scriviamo e leggiamo poesie perché è carino. Noi leggiamo e scriviamo poesie perché siamo membri della razza umana, e la razza umana è piena di passione. Medicina, legge, economia, ingegneria sono nobili professioni, necessarie al nostro sostentamento. Ma la poesia, la bellezza, il romanticismo, l’amore… sono queste le cose che ti tengono in vita.',
+        'La vita è come una scatola di cioccolatini, non sai mai quello che ti capita!',
+        'Andai nei boschi perché volevo vivere con saggezza e profondità… e succhiare tutto il midollo della vita, sbaragliare tutto ciò che non era vita e non scoprire in punto di morte che non ero vissuto.',
+        'Prima o poi capirai, come ho fatto anch’io, che una cosa è conoscere il sentiero giusto, un’altra è imboccarlo.',
+        'Ogni persona è un abisso, vengono le vertigini a guardarci dentro.',
+        'Prima di cambiare il mondo, devi capire che ne fai parte anche tu: non puoi restare ai margini e guardare dentro.',
+        'Non può piovere per sempre!',
+        'L’amore più bello è quello che risveglia l’anima e che ci fa desiderare di arrivare più in alto, è quello che incendia il nostro cuore e che porta la pace nella nostra mente.',
+        'Se vuoi qualcosa nella vita…datti da fare e prendila!',
+        'Io ho bisogno di credere che qualcosa di straordinario sia possibile.',
+        'Perché l’amore non è innamorarsi di un bel sedere o di un fisico perfetto. L’amore non è andare in giro e vantarsi perché si ha una ‘fidanzata perfetta’ o un ‘ragazzo sexy’. L’amore non è fermarsi alle apparenze. L’amore è andare oltre: l’amore è scavare nel profondo per trovare l’anima, guardare oltre ciò che siamo esteriormente, non fermarsi alla taglia del reggiseno, o dei jeans. L’amore è scovare quello che c’è dentro al nostro corpo, che è solamente l’involucro della nostra essenza.',
+        'Esattamente questo quello che voglio, nessuna pietà… da dove viene, che cosa ha fatto… io me ne frego.',
+        'Il cuore di una donna è un profondo oceano di segreti.',
+        'Chi salva una vita , salva il mondo intero.'
+    ];
 
     $('.fa-paper-plane').click(function(){ // Se clicco sull'aeroplanino (invio)
         sendMessage();
