@@ -266,6 +266,7 @@ $(document).ready(function(){
         var htmlTwo = templateTwo(layout); // Popolo il template
         $(selectChatTwo).append(htmlTwo); // E lo appendo nella chat giusta
     }
+    
     var listaRisposte = [ // Array di risposte che verranno generate automaticamente in seguito
         'È soltanto nelle misteriose equazioni dell’amore che si può trovare ogni ragione logica. Io sono qui grazie a te. Tu sei la ragione per cui io esisto. Tu sei tutte le mie ragioni.',
         '"Amore” significa non dover mai dire “mi dispiace”.',
